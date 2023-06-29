@@ -1,0 +1,13 @@
+{% load wagtailcore_tags %}
+
+    <p>
+        <ul>
+            {% for cat in categories %}
+                <li>
+                    <a href="/news/?={{ cat.slug }}" aria-label="123">
+                    <span class="sr-only" >{{ cat.name }}</span>
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </p>

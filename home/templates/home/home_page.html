@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load static my_tags%}
+
+{% block body_class %}template-homepage{% endblock %}
+
+{% block extra_css %}
+
+{% comment %}
+Delete the line below if you're just getting started and want to remove the welcome screen!
+{% endcomment %}
+<link rel="stylesheet" href="{% static 'css/welcome_page.css' %}">
+{% endblock extra_css %}
+
+{% block content %}
+    <header>
+        <a href="{% url 'subscribe'%}">Subscribe</a>
+    </header>
+    <div class="container">
+    {% categories %}
+
+    </div>
+
+    <div  class="container">
+        <footer>
+            <a href="{% url 'post_feed' %}">RSS Feed</a>
+
+        </footer>
+
+
+    </div>
+
+
+{% endblock content %}
