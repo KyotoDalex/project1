@@ -1,0 +1,16 @@
+{% load static %}
+
+
+
+        <div class="widget  p-0  ">
+            <form enctype="multipart/form-data" method="POST" action="{% url 'subscribe1' %}" class="widget-newsletter-style1 white-input" style="text-align: center;">
+                    {% csrf_token %}
+                        <p>Получайте свежие новости прямо на почту!</p>
+                        <input type="email" name="email" class="form-control" id="userEmail" placeholder="Ваш E-mail..." required="">
+                        <small style="font-weight: 600;color: red;" class="error"></small>
+                    <br>
+                    <button type="submit" class="vs-btn" data-method="POST">Подписаться</button>
+            </form>
+        </div>
+
+    <script src="{% static 'assets/app.js' %}"></script>
