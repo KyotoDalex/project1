@@ -1,0 +1,291 @@
+.tab-content>.tab-pane {
+  display: block;
+  height: 0;
+  opacity: 0;
+  visibility: hidden;
+  overflow: hidden;
+  transition: opacity ease 0.4s, visibility ease 0.8s;
+
+  &.show {
+    opacity: 1;
+    visibility: visible;
+    height: 100%;
+  }
+}
+
+
+.slick-vertical .slick-slide {
+  border: none;
+}
+
+.slick-track {
+  min-width: 100%;
+}
+
+.slick-arrow {
+  position: absolute;
+  z-index: 2;
+  @include equal-size(30px);
+  line-height: 30px;
+  display: inline-block;
+  border: none;
+  font-size: 14px;
+  background-color: $white-color;
+  color: $body-color;
+  outline: none;
+
+  &:hover {
+    background-color: $theme-color;
+    color: $white-color;
+  }
+}
+
+.bg-theme {
+  .slick-arrow {
+    &:hover {
+      background-color: $title-color;
+    }
+  }
+}
+
+
+.arrow-outer,
+.arrow-y-align {
+  .slick-arrow {
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
+
+    &.slick-next {
+      left: auto;
+      right: 20px;
+    }
+  }
+}
+
+.arrow-top-right {
+  .slick-arrow {
+    right: 15px;
+    top: -50px;
+
+    &.slick-prev {
+      right: 50px;
+    }
+  }
+}
+
+
+
+.arrow-y-right {
+  .slick-arrow {
+    right: 0;
+    top: 50%;
+    margin-top: -15px;
+
+    &.slick-prev {
+      right: 35px;
+    }
+  }
+}
+
+.arrow-rounded {
+  .slick-arrow {
+    border-radius: 50%;
+  }
+}
+
+.arrow-has-margin {
+  .slick-arrow {
+    top: calc(50% - 16px);
+  }
+}
+
+.arrow-lg {
+  .slick-arrow {
+    font-size: 18px;
+    @include equal-size(50px);
+  }
+} 
+
+.arrow-outer {
+  .slick-arrow {
+    left: -75px;
+
+    &.slick-next {
+      right: -75px;
+    }
+  }
+}
+
+.arrow-style-gray {
+  .slick-arrow:not(:hover) {
+    background-color: $smoke-color;
+  }
+}
+
+.arrow-style-theme {
+  .slick-arrow {
+    background-color: $theme-color;
+    color: $white-color;
+    
+    &:hover {
+      background-color: $body-color;
+    }
+  }
+  
+}
+
+.arrow-corner-top-right { 
+  .slick-arrow {
+    right: 20px;
+    top: 20px;
+
+    &.slick-prev {
+      right: 55px;
+    }
+  }
+}
+
+.arrow-outline-white {
+  .slick-arrow {
+    background-color: transparent;
+    color: $white-color;
+    border: 1px solid $white-color;
+
+    &:hover {
+      background-color: $theme-color;
+      border-color: transparent;
+    }
+  }
+}
+
+.vs-arrow-style1 {
+  .slick-arrow {
+    width: 45px;
+    height: 80px;
+    font-size: 22px;
+    left: -60px;
+
+    &.slick-next {
+      left: auto;
+      right: -57px;
+    }
+  }
+}
+
+.arrow-theme {
+  .slick-arrow {
+    background-color: $theme-color;
+    color: $white-color;
+
+    &:hover {
+      color: $body-color;
+      background-color: $white-color;
+    }
+  }
+}
+
+.slick-dots {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  position: absolute;
+  line-height: 0;
+
+  li {
+    display: inline-block;
+    margin-right: 5px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  button {
+    border: 1px solid $theme-color;
+    background-color: $white-color;
+    font-size: 0;
+    padding: 0;
+    display: inline-block;
+    @include equal-size(10px);
+    border-radius: 50%;
+  }
+
+  li.slick-active {
+    button {
+      border-color: transparent;
+      background-color: $theme-color;
+    }
+  }
+}
+
+.dots-center-bottom {
+  .slick-dots {
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+  }
+}
+
+.dots-corner-top {
+  .slick-dots {
+    right: 20px;
+    top: 20px;
+  }
+}
+
+.slick-slide img {
+  display: inline-block;
+}
+
+
+.image-slide {
+  .slick-arrow {
+    left: 0;
+    top: 50%;
+    transform: translate(0, -50%);
+
+    &.slick-next {
+      right: 0;
+      left: auto;
+    }
+  }
+}
+
+.thumb-slide {
+  .slick-slide {
+    position: relative;
+
+    &:before {
+      content: '';
+      position: absolute;
+      left: 5px;
+      right: 5px;
+      top: 0;
+      bottom: 0;
+      background-color: $theme-color;
+      opacity: 0;
+      visibility: hidden;
+      transition: all ease 0.4s;
+    }
+
+    &.slick-current {
+      &::before {
+        opacity: 0.70;
+        visibility: visible;
+      }
+    }
+  }
+
+  img {
+    cursor: pointer;
+  }
+}
+
+
+@include xs {
+  .arrow-lg .slick-arrow {
+    width: 35px;
+    height: 35px;
+  }
+}

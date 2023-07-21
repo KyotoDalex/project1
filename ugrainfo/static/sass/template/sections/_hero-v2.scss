@@ -1,0 +1,45 @@
+.vs-hero-layout2 {
+  .slick-arrow {
+    left: -25px;
+
+    &.slick-next {
+      right: -25px;
+    }
+  }
+}
+
+
+@include lg {
+  .vs-hero-layout2 {
+    .slick-arrow {
+      left: 15px;
+      top: 15px;
+      margin-top: 0;
+      transform: translate(0, 0);
+
+      &.slick-next {
+        left: 75px;
+        right: auto;
+      }
+    }
+  }
+}
+
+@include  md {
+  .vs-hero-layout2 {
+    .overlay-bottom {
+      padding: 15px 20px;
+    }
+  }
+}
+
+
+@include xs {
+  .vs-hero-layout2 {
+    .slick-arrow {
+      &.slick-next {
+        left: 60px;
+      }
+    }
+  }
+}

@@ -1,0 +1,50 @@
+
+.vs-error-layout1 {
+  .error-title {
+    font-size: 10vw;
+    text-transform: uppercase;
+    line-height: 1;
+    margin-bottom: 0.05em;
+  }
+
+  .error-subtitle {
+    font-size: 2.7vw;
+    margin-bottom: 0.3em;
+    line-height: 1;
+  }
+}
+
+
+@include md {
+  .vs-error-layout1 {
+    &.pt-150 {
+      padding-top: 100px;
+    }
+    &.pb-150 {
+      padding-bottom: 100px;
+    }
+
+    .error-title {
+      font-size: 12vw;
+      margin-bottom: 0.2em;
+    }
+
+    .error-subtitle {
+      font-size: 4.5vw;
+      margin-bottom: 0.6em;
+    }
+  }
+}
+
+
+@include xs {
+  .vs-error-layout1 {
+    .error-title {
+      margin-bottom: 0.3em;
+    }
+
+    .error-subtitle {
+      margin-bottom: 0.8em;
+    }
+  }
+}

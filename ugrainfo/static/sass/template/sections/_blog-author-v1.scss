@@ -1,0 +1,23 @@
+@media (min-width: $xl) {
+  .blog-author-style1 {
+    .author-name {
+      font-size: 42px;
+      line-height: 1;
+    }
+  }
+}
+
+
+
+@include xs {
+  .blog-author-style2 {
+    &.py-30 {
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
+    &.px-30 {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+  }
+}

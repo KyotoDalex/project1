@@ -1,0 +1,123 @@
+.vs-hero-layout1 {
+  .vs-blog {
+    min-height: 480px;
+    position: relative;
+    margin-bottom: 0;
+    width: 100%;
+    max-width: 880px;
+  }
+
+  .post-author {
+    display: inline-block;
+    margin-right: 20px;
+  }
+
+  .blog-meta {
+    display: inline-block;
+  }
+
+  .blog-category {
+    margin-bottom: 10px;
+  }
+
+  .blog-title {
+    margin-bottom: 7px;
+  }
+
+  .slick-arrow {
+    left: 100px;
+    top: calc(50% + 25px);
+    transform: translateY(-50%);
+    opacity: 0;
+    visibility: hidden;
+    @include equal-size(40px);
+    font-size: 18px;
+    
+    &.slick-next {
+      top: calc(50% - 25px);
+    }
+  }
+
+  .slick-dots {
+    right: 60px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    li {
+      display: block;
+      margin-right: 0;
+      margin-bottom: 10px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    button {
+      border: none;
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+
+  &:hover {
+    .slick-dots button,
+    .slick-arrow {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+}
+
+
+@include xl {
+  .vs-hero-layout1 {
+    .slick-arrow {
+      left: 20px;
+    }
+    .slick-dots {
+      right: 20px;
+    }
+  }
+}
+
+@include ml {
+  .vs-hero-layout1 {
+    .slick-arrow {
+      left: 10px;
+      top: 30px;
+
+      &.slick-next {
+        top: 30px;
+        left: 60px;
+      }
+    }
+    .slick-dots {
+      right: 10px;
+      top: 30px;
+
+      li {
+        display: inline-block;
+        margin-right: 5px;
+      }
+    }
+  }
+}
+
+@include sm {
+  .vs-hero-layout1 {
+    .vs-blog {
+      min-height: 350px;
+    }
+
+    .blog-title {
+      font-size: 24px;
+    }
+
+    .post-author {
+      margin-right: 10px;
+    }
+  }
+
+
+}

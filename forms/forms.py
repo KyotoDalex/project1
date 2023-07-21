@@ -1,7 +1,14 @@
 from django import forms
-from snippets import snippets
-
-
-class CatsForm(forms.Form):
-    category = snippets.NewsCategory
-    choice_field = forms.ChoiceField(choices=category)
+# from .models import SubscribedUser
+#
+#
+# class SubscribeForm(forms.ModelForm):
+#     class Meta:
+#         model = SubscribedUser
+#         fields = ('email',)
+#         widgets = {
+#             'email': forms.TextInput(attrs={'class': 'editContent', 'placeholder':'Ваш email..'})
+#         }
+#         labels = {
+#             'email':''
+#         }

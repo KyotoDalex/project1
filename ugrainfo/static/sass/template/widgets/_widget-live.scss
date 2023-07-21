@@ -1,0 +1,7 @@
+.live-author {
+  line-height: 1;
+  .media-img {
+    margin-right: 15px;
+    @include equal-size(45px);
+  }
+}

@@ -1,0 +1,14 @@
+:root {
+  --theme-color: #f6830f;
+}
+
+.link-inherit a:hover,
+a:hover {
+  color: #e37609;
+}
+
+.play-btn > i {
+  background-color: rgba(246, 131, 15, 0.8);
+}
+
+/*# sourceMappingURL=theme-color4.css.map */

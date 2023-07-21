@@ -1,0 +1,21 @@
+
+@include lg {
+  .about-content-box1 {
+    &.mt-n130 {
+      margin-top: 30px;
+    }
+    
+    &.px-80 {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+    &.pt-70 {
+      padding-top: 10px;
+    }
+
+    &.pb-80 {
+      padding-bottom: 20px;
+    }
+  }
+}

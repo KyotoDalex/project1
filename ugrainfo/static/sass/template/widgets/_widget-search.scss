@@ -1,0 +1,34 @@
+.widget {
+  .search-form {
+    display: flex;
+    flex-wrap: wrap;
+
+    input {
+      width: calc(100% - 60px);
+      height: 60px;
+      background-color: $white-color;
+      border: none;
+      color: $body-color;
+      padding-left: 20px;
+
+      @include inputPlaceholder {
+        color: $body-color;
+      }
+    }
+
+    button {
+      @include equal-size(60px);
+      text-align: center;
+      padding: 0;
+      border: 1px solid transparent;
+      color: $white-color;
+      background-color: $theme-color;
+
+      &:hover {
+        border-color: $theme-color;
+        background-color: $white-color;
+        color: $theme-color;
+      }
+    }
+  }
+}

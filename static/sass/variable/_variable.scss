@@ -1,0 +1,95 @@
+:root {
+  --title-color       : #000000;
+  --body-color        : #333333;
+  --meta-color        : #444444;
+  --secondary-color   : #eff1f5;
+  --smoke-color       : #f6f8fa;
+  --white-color       : #ffffff;
+  --dark-color        : #1f1f1f;
+  --yellow-color      : #fec624;
+  --success-color     : #28a745;
+  --error-color       : #dc3545;
+  --cyprus-color      : #0E3246;
+  --sapphire-color    : #0E3246;
+  --regal-blue-color  : #1b4962;
+  --border-color      : rgba(0,0,0,0.10);
+  --theme-font        : 'Roboto', sans-serif;
+  --icon-font         : 'Font Awesome 5 Pro';
+  --ripple-ani-duration: 5s;
+}
+
+
+// Color Variation
+$theme-color       : var(--theme-color); // Variable From theme-color.scss
+$title-color       : var(--title-color);
+$body-color        : var(--body-color);
+$meta-color        : var(--meta-color);
+$secondary-color   : var(--secondary-color);
+$smoke-color       : var(--smoke-color);
+$white-color       : var(--white-color);
+$dark-color        : var(--dark-color);
+$yellow-color      : var(--yellow-color);
+$success-color     : var(--success-color);
+$error-color       : var(--error-color);
+$border-color      : var(--border-color);
+
+
+// Color Mapping 
+$colorsMap     : ();
+$colorsMap : map-merge((
+  "theme"       : $theme-color,
+  "title"       : $title-color,
+  "body"        : $body-color,
+  "smoke"       : $smoke-color,
+  "secondary"   : $secondary-color,
+  "white"       : $white-color,
+  "dark"        : $dark-color,
+  "yellow"      : $yellow-color,
+  "success"     : $success-color,
+  "error"       : $error-color
+),$colorsMap);
+
+
+// Font Variation
+$theme-font : var(--theme-font);
+$icon-font  : var(--icon-font);
+
+$title-font      : $theme-font;
+$body-font       : $theme-font;
+$body-font-size  : 16px;
+$body-line-Height: 26px;
+$body-font-weight: 400;
+$p-line-Height   : 1.8;
+
+// Font Mapping 
+$fontsMap: ();
+$fontsMap: map-merge((
+  "theme": $theme-font,
+  "icon" : $icon-font
+),$fontsMap);
+
+
+// Device Variation
+$xl: 1500px;
+$ml: 1300px;
+$lg: 1199px;
+$md: 992px;
+$sm: 768px;
+$xs: 576px;
+
+
+// Spacing Count with 5x
+$xs-space-count: 20;
+$sm-space-count: 10;
+$md-space-count: 10;
+$lg-space-count: 45;
+$xl-space-count: 45;
+
+
+// Section Space 
+$space : 60px;
+$space-medium: 30px;
+
+// Section Space md
+$space-md : 30px;
+$space-medium-md: 0px;

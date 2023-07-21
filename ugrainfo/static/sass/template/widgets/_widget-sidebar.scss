@@ -1,0 +1,26 @@
+.widget {
+  padding: 30px;
+  margin-bottom: 30px;
+
+  
+}
+
+.bg-white.has-light-border {
+  border: 1px solid rgba($color: #cedfef, $alpha: 0.40);
+}
+
+
+.widget_title {
+  font-size: 18px;  
+  line-height: 1em;
+  text-transform: uppercase;
+  margin-bottom: 25px;
+  margin-top: -3px;
+}
+
+
+@include lg {
+  .widget {
+    padding: 20px;
+  }
+}

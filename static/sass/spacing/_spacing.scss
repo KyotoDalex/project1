@@ -1,0 +1,36 @@
+// Padding
+@import 'padding/padding-xs';
+// @import 'padding/padding-sm';
+// @import 'padding/padding-md';
+// @import 'padding/padding-lg';
+// @import 'padding/padding-xl';
+
+// Margin 
+@import 'margin/margin-xs';
+// @import 'margin/margin-sm';
+// @import 'margin/margin-md';
+// @import 'margin/margin-lg';
+// @import 'margin/margin-xl';
+
+.mt-n130 {
+  margin-top: -130px;
+}
+
+.pt-150 {
+  padding-top: 150px;
+}
+
+.pb-150 {
+  padding-bottom: 150px;
+}
+
+.pt-1px {
+  padding-top: 1px;
+}
+
+@include ml {
+  .px-75 {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}

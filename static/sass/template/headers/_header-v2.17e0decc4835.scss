@@ -1,0 +1,39 @@
+.menu-style2 {
+  >ul {
+    >li {
+      >a {
+        padding: 18px 17px;
+        line-height: 1;
+      }
+
+      &:hover {
+        >a {
+          background-color: $theme-color;
+          color: $white-color;
+        }
+      }
+    }
+  }
+}
+
+
+
+@include lg {
+  .menu-style2>ul>li>a {
+    padding: 15px 10px;
+    font-size: 14px;
+  }
+
+  .header-layout2 {
+    .header-meta-style1 li {
+      margin-right: 5px;
+      padding-right: 7px;
+      font-size: 14px;
+
+      &:last-child {
+        margin-right: 0;
+        padding-right: 0;
+      }
+    }
+  }
+}

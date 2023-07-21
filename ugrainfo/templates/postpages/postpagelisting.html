@@ -1,10 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% load wagtailroutablepage_tags %}
 
-</body>
-</html>
+
+    <div class="container">
+        {% for post in posts %}
+            <div class="row">
+                <div class="col-sm-4">
+                img here
+                </div>
+                <div class="col-sm-8">
+                    <a href="{{ post.url }}" aria-label="links"><span class="sr-only">{{ post.title }}</span> </a>
+                    {{ post.heading }}
+                </div>
+            </div>
+            <br>
+        {% endfor %}
+    </div>

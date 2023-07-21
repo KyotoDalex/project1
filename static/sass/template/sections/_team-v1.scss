@@ -1,0 +1,62 @@
+.vs-team-layout1 {
+  a {
+    color: inherit;
+  }
+
+  .vs-team-content {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -70px;
+    text-align: center;
+    z-index: 2;
+    transition: all ease 0.4s;
+  }
+
+  .member-name {
+    font-size: 22px;
+    margin-bottom: 0;
+  }
+
+
+  .vs-team {
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 30px;
+
+    &:before {
+      content: '';
+      z-index: 1;
+      position: absolute;
+      left: 0;
+      width: 100%;
+      bottom: 0;
+      top: auto;
+      height: 40%;
+      transition: all ease 0.4s;
+      background-image: linear-gradient(to top, rgba(0, 0, 0, 0.8) 40%, rgba(0, 0, 0, 0) 100%);
+    }
+
+
+    &:hover {
+      .vs-team-content {
+        bottom: 0;
+      }
+
+      &:before {
+        height: 60%;
+      }
+    }
+  }
+
+}
+
+
+@include md {
+  .vs-team-layout1 {
+    .vs-carousel.pb-20 {
+      padding-bottom: 0;
+    }
+  }
+}

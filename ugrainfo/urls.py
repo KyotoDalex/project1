@@ -7,10 +7,10 @@ from wagtail import urls as wagtail_urls
 from wagtail.documents import urls as wagtaildocs_urls
 
 import home
-from forms.views import choice, validate_email, index
+from newsletter.views import  validate_email, SubView
 from search import views as search_views
-from post import feed
-
+from post import feed,views
+from .views import sass_page_handler, login,yanao,hmao,tyumen
 
 
 urlpatterns = [
@@ -19,9 +19,17 @@ urlpatterns = [
     path("documents/", include(wagtaildocs_urls)),
     path("search/", search_views.search, name="search"),
     re_path(r'^validate/', validate_email, name='validate_email'),
-    path('newsletter/', index, name='subscribe'),
-    path('news/',include('post.urls')),
-    path('feed/rss', feed.LatestPostsFeed(),name='post_feed')
+    re_path(r'^newsletter/', SubView.as_view(), name='subscribe1'),
+    path('feed/rss', feed.LatestPostsFeed(),name='post_feed'),
+    path('',sass_page_handler),
+    path('accounts/login/', login),
+    path('<slug:slug>', views.PostPageDetail.as_view(), name='PostPage_detail'),
+    path('news/', views.last_news),
+    path('yanao/',yanao),
+    path('hmao/',hmao),
+    path('tyumen/',tyumen)
+
+
 ]
 
 

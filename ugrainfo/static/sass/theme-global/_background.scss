@@ -1,0 +1,41 @@
+@each $colorsMap, $value in $colorsMap {
+  .bg-#{$colorsMap} {
+    background-color: #{$value} !important;
+  }
+}
+
+.bg-cyprus {
+  background-color: var(--cyprus-color);
+}
+
+.bg-sapphire {
+  background-color: var(--sapphire-color);
+}
+
+.background-image {
+  @include background-content(no-repeat, cover, center center);
+}
+
+.bg-fluid {
+  @include background-content(no-repeat, 100% 100%, center center);
+}
+
+.bg-auto {
+  background-size: auto auto;
+}
+
+.bg-bottom {
+  background-position: center bottom;
+}
+
+.bg-top {
+  background-position: center top;
+}
+
+.bg-fixed {
+  background-attachment: fixed;
+}
+
+.bg-bottom-left {
+  background-position: left bottom; 
+}

@@ -1,0 +1,15 @@
+// Variable
+$theme-color: #0779e4;
+
+:root {
+  --theme-color: #0779e4;
+}
+
+.link-inherit a:hover,
+a:hover {
+  color: darken($theme-color, 5%);
+}
+
+.play-btn>i {
+  background-color: rgba($color: $theme-color, $alpha: 0.80);
+}

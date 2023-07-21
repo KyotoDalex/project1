@@ -1,0 +1,80 @@
+.nice-select {
+  position: relative;
+  border: 1px solid $border-color;
+  z-index: 2;
+  cursor: pointer;
+  line-height: 60px;
+  width: 100%;
+  float: none;
+  z-index: 42;
+
+  &:after {
+    display: none;
+  }
+
+  &:before {
+    content: '\f063';
+    font-family: $icon-font;
+    line-height: 1;
+    transition: all ease 0.4s;
+  }
+
+  .list {
+    position: absolute;
+    left: 0;
+    top: 100%;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    background-color: $white-color;
+    opacity: 0;
+    visibility: hidden;
+    transform-origin: 50% 0;
+    transform: scale(.75) translateY(-21px);
+    transition: all .2s cubic-bezier(.5, 0, 0, 1.25), opacity .15s ease-out;
+    min-width: 80px;
+    width: 100%;
+    border-radius: 0;
+    border: 1px solid $border-color;
+  }
+
+  .option {
+    white-space: normal;
+    word-break: break-all;
+    line-height: 1.5;
+    padding: 10px 15px;
+    border-top: 1px solid $border-color;
+    margin: 0 0;
+
+    &.selected {
+      cursor: default;
+    }
+
+    &.selected,
+    &.focus,
+    &:hover {
+      background-color: $smoke-color;
+    }
+  }
+
+  >span.current {
+    overflow: hidden;
+    max-width: 100%;
+    display: inline-block;
+  }
+
+
+  &.open {
+    &:before {
+      transform: rotate(180deg);
+    }
+
+    .list {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transform: scale(1) translateY(0);
+    }
+  }
+
+}

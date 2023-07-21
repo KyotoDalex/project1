@@ -1,0 +1,21 @@
+.widget_recent_comments {
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li:not(:last-child) {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.10);
+    margin-bottom: 15px;
+    padding-bottom: 12px;
+  }
+
+  a:not(:hover) {
+    color: inherit;
+  }
+
+
+
+}
+

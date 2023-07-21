@@ -1,0 +1,12 @@
+.widget {
+ .social-links.links-hover-border {
+    a {
+      border-radius: 0;
+      background-color: $white-color;
+
+      &:hover {
+        background-color: $theme-color;
+      }      
+    }
+  }
+}

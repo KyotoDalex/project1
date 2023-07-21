@@ -1,0 +1,89 @@
+.footer-widget {
+  &,
+  .widget {
+    padding: 0;
+    border: none;
+    padding-bottom: 0;
+    background-color: transparent;
+  }
+
+  .widget_title {
+    font-size: 20px;
+    margin-bottom: 27px;
+  }
+
+  .widget_meta,
+  .widget_pages,
+  .widget_archive,
+  .widget_categories,
+  .widget_nav_menu {
+    margin-bottom: 20px;
+
+    .widget_title {
+      margin-bottom: 20px;
+    }
+
+    li {
+      >span {
+        @include equal-size(auto);
+        position: relative;
+        background-color: transparent;
+        color: $body-color;
+        line-height: 1;
+      }
+    }
+    
+    a {
+      background-color: transparent;
+      padding: 0;
+      position: relative;
+      margin-bottom: 3px;
+      display: inline-block;
+      font-weight: 400;
+
+      &:hover {
+        background-color: transparent;
+        color: $theme-color;
+      }
+    }
+
+  }
+
+  .widget .vs-widget-about-author {
+    .author-img {
+      @include equal-size(100px);
+      margin-left: 0;
+    }
+  }
+
+  .vs-widget-recent-post {
+    .media-img {
+      border-radius: 0;
+    }
+
+    span {
+      margin-top: 0;
+      margin-bottom: 3px;
+    }
+  }
+
+  input {
+    height: 55px;
+  }
+
+}
+
+
+
+
+@include md {
+  .footer-widget {
+    &.pt-100 {
+      padding-top: 60px;
+    }
+
+    &.pb-70 {
+      padding-bottom: 30px;
+    }
+  }
+}

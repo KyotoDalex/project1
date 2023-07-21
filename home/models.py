@@ -44,7 +44,7 @@ class MainPageCarousel(Orderable):
 
 
 class MainPage(Page):
-    template = 'home/home_page.html'
+    template = 'index.html'
     banner_title = models.CharField(max_length=100, blank=True, null=True)
     banner_subtitle = RichTextField(features=["bold", "italic", "h1", "h2"])
     banner_image = models.ForeignKey(

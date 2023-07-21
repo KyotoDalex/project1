@@ -1,0 +1,45 @@
+.vs-gallery-layout1 {
+
+  .blog-category {
+    position: absolute;
+    right: 18px;
+    top: 20px;
+    z-index: 3;
+  }
+
+  .overlay {
+    opacity: 0;
+    visibility: hidden;
+    transition: all ease 0.4s;
+  }
+
+  .overlay-bottom {
+    bottom: -50px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all ease 0.4s;
+    transition-delay: 0.1s;
+  }
+
+  .vs-gallery {
+    position: relative;
+    margin-bottom: 30px;
+
+    &:hover {
+
+      .overlay-bottom {
+        opacity: 1;
+        visibility: visible;
+        bottom: 0;
+      }
+      
+      .overlay {
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+  }
+
+  
+
+}

@@ -1,0 +1,20 @@
+.widget_recent_entries {
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    li {
+      >a:not(:hover) {
+        color: inherit;
+      }
+
+      &:not(:last-child) {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.10);
+        padding-bottom: 12px;
+        margin-bottom: 12px;
+      }
+    }
+  }
+  
+}

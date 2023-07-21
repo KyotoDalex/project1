@@ -33,7 +33,7 @@ const subscribeUser = function(email, name) {
         }
     });
     $.ajax({
-        url: '/newsletter/',
+        url: '',
         type: 'POST',
         dataType: 'json',
         cache: false,

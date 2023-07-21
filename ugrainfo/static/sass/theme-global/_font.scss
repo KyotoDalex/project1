@@ -1,0 +1,57 @@
+@each $fontsMap, $value in $fontsMap {
+  .text-#{$fontsMap} {
+    font-family: #{$value};
+  }
+}
+
+.text-light {
+  font-weight: 300;
+}
+
+.text-normal {
+  font-weight: 400;
+}
+
+.text-medium {
+  font-weight: 500;
+}
+
+.text-semibold {
+  font-weight: 600;
+}
+
+.text-bold {
+  font-weight: 700;
+}
+
+.text-xs {
+  font-size: 14px;
+}
+
+.text-20 {
+  font-size: 20px;
+}
+
+.text-12 {
+  font-size: 12px;
+}
+
+.text-uppercase {
+  text-transform: uppercase;
+}
+
+@include lg {
+  .text-20 {
+    font-size: 18px;
+  }
+
+  .text-small-lg {
+    font-size: 14px;
+  }
+}
+
+@include xs {
+  .text-small-xs {
+    font-size: 14px;
+  }
+}

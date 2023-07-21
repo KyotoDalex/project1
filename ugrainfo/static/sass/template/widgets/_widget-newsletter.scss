@@ -1,0 +1,22 @@
+// .widget {
+//   .newsletter-form {
+//     position: relative;
+
+//    .form-icon {
+//      position: absolute;
+//      left: 20px;
+//      top: 19px;
+//    }
+
+//    .form-control {
+//      padding-left: 50px;
+//      padding-right: 20px;
+//    }
+//   }
+// }
+
+@include lg {
+  .widget-newsletter-style1.px-30.pt-50.pb-55{
+    padding: 20px;
+  }
+}

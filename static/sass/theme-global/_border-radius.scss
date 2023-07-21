@@ -1,0 +1,29 @@
+.rounded-circle,
+.radius-circle {
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.radius-50 {
+  border-radius: 50px;
+}
+
+.radius-100 {
+  border-radius: 100px;
+}
+
+.radius-10 {
+  border-radius: 10px;
+}
+
+.border-bottom-1 {
+  border: 1px solid;
+}
+
+.border-5-theme-top {
+  border-top: 5px solid $theme-color;
+}
+
+.border-regal-blue-bottom {
+  border-bottom: 1px solid var(--regal-blue-color);
+}

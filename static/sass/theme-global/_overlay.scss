@@ -1,0 +1,99 @@
+
+.link-ovelay {
+  @include overlay(0, 1);
+}
+
+.overlay-sm,
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 2;
+}
+
+.overlay-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.overlay-bottom {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  z-index: 4;
+  padding: 25px 30px;
+}
+
+[data-overlay] {
+  position: relative;
+  [class^="col-"],
+  [class*="col-"] {
+    z-index: 1;
+  }
+}
+
+[data-overlay]:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+
+@each $colorsMap, $value in $colorsMap {
+  [data-overlay="#{$colorsMap}"]:before {
+    background-color: #{$value};
+  }
+}
+
+
+@for $i from 1 through 10 {
+  [data-opacity="#{1 * $i}"]:before {
+    opacity: #{$i/10};
+  }
+}
+
+
+@media (min-width: $xs) {
+  .overlay-bottom-sm {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    z-index: 4;
+    padding: 25px 30px;
+    background-color: transparent;
+  }
+}
+
+
+@include sm {
+  .overlay-bottom-sm,
+  .overlay-bottom { 
+    &,
+    &[class*="p-"],
+    &[class*="px-"],
+    &[class*="py-"] {
+      padding: 15px 20px;
+    }
+  }
+  
+}
+
+@include xs {
+  .overlay-sm {
+    display: none;
+  }
+  .overlay-bottom-sm {
+    background-color: $white-color;
+    box-shadow: 0 0 15px rgba($color: #000000, $alpha: 0.1);
+  }
+}

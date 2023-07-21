@@ -1,0 +1,34 @@
+@media (min-width: $lg) and (max-width: $xl) {
+  .vs-hero-layout4,
+  .vs-hero-layout3 {
+    .vs-blog-content {
+      &.px-40 {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+
+      &.py-35 {
+        padding-top: 15px;
+        padding-bottom: 15px;
+      }
+    }
+  }
+}
+
+
+@media (max-width: $sm) {
+  .vs-hero-layout4,
+  .vs-hero-layout3 {
+    .vs-blog-content {
+      &.px-40 {
+        padding-left: 15px;
+        padding-right: 15px;
+      }
+
+      &.py-35 {
+        padding-top: 10px;
+        padding-bottom: 10px;
+      }
+    }
+  }
+}

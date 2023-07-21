@@ -1,0 +1,66 @@
+.contact-map-style1 {
+  height: 550px;
+  width: 100%;
+  margin-bottom: -185px;
+}
+
+
+@include lg {
+  .info-box1 {
+    &.px-50 {
+      padding-right: 20px;
+      padding-left: 20px;
+    }
+
+    &.py-50 {
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
+  }
+
+  .contact-form-style1 {
+    &.px-60 {
+      padding-left: 30px;
+      padding-right: 30px;
+    }
+
+    &.py-60 {
+      padding-top: 30px;
+      padding-bottom: 30px;
+    }
+  }
+}
+
+
+@include md {
+  .contact-map-style1 {
+    margin-bottom: 30px;
+    height: 300px;
+  }
+}
+
+@include xs {
+  .info-box1 {
+    &.px-50 {
+      padding-right: 15px;
+      padding-left: 15x;
+    }
+
+    &.py-50 {
+      padding-top: 15px;
+      padding-bottom: 15px;
+    }
+  }
+
+  .contact-form-style1 {
+    &.px-60 {
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+
+    &.py-60 {
+      padding-top: 15px;
+      padding-bottom: 15px;
+    }
+  }
+}

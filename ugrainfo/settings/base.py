@@ -16,7 +16,6 @@ import os
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = os.path.dirname(PROJECT_DIR)
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
@@ -32,10 +31,12 @@ INSTALLED_APPS = [
     'snippets',
     "ugrainfo",
     "forms",
-
+    "profanity",
+    "newsletter",
 
     "wagtail.contrib.forms",
     "wagtail.contrib.redirects",
+    "wagtail.contrib.modeladmin",
     "wagtail.embeds",
     "wagtail.sites",
     "wagtail.users",
@@ -46,7 +47,8 @@ INSTALLED_APPS = [
     "wagtail.admin",
     "wagtail",
     "wagtailvideos",
-
+    "wagtailcaptcha",
+    "wagtail.contrib.routable_page",
 
     "modelcluster",
     "taggit",
@@ -56,7 +58,10 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "django_extensions"
+    "django_extensions",
+
+    'fontawesomefree',
+    'sass_processor'
 ]
 
 MIDDLEWARE = [
@@ -81,12 +86,25 @@ TEMPLATES = [
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
+                'post.context_processors.breaking_news',
+                'post.context_processors.last_news',
+                'post.context_processors.all_posts',
+                'post.context_processors.all_posts2',
+                'post.context_processors.all_posts3',
+                'post.context_processors.tyumen_news',
+                'post.context_processors.yamal_news',
+                'post.context_processors.ugra_news',
+                "post.context_processors.listing",
+                'post.context_processors.tyumen_listing',
+                'post.context_processors.yamal_listing',
+                'post.context_processors.ugra_listing',
+                'post.context_processors.author_check',
                 "django.template.context_processors.debug",
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
             ],
-            "libraries":{
+            "libraries": {
                 'my_tags': 'snippets.template_tag.my_tags'
             }
         },
@@ -94,7 +112,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = "ugrainfo.wsgi.application"
-
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
@@ -105,7 +122,6 @@ DATABASES = {
         "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -125,11 +141,10 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = "en-us"
+LANGUAGE_CODE = "ru-ru"
 
 TIME_ZONE = "UTC"
 
@@ -139,13 +154,13 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATICFILES_FINDERS = [
     "django.contrib.staticfiles.finders.FileSystemFinder",
     "django.contrib.staticfiles.finders.AppDirectoriesFinder",
+    'sass_processor.finders.CssFinder',
 ]
 
 STATICFILES_DIRS = [
@@ -159,10 +174,10 @@ STATICFILES_STORAGE = "django.contrib.staticfiles.storage.ManifestStaticFilesSto
 
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATIC_URL = "/static/"
+SASS_PROCESSOR_ROOT = STATIC_ROOT
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = "/media/"
-
 
 # Wagtail settings
 
@@ -179,3 +194,29 @@ WAGTAILSEARCH_BACKENDS = {
 # Base URL to use when referring to full URLs within the Wagtail admin backend -
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
 WAGTAILADMIN_BASE_URL = "http://example.com"
+
+WAGTAIL_FRONTEND_LOGIN_TEMPLATE = 'account.html'
+WAGTAIL_FRONTEND_LOGIN_URL = '/accounts/login/'
+# SMTP validation
+EMAIL_HOST = 'smtp.yandex.ru'
+EMAIL_USE_SSL = True
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+EMAIL_HOST_USER = 'test123123123t@yandex.ru'
+EMAIL_HOST_PASSWORD = 'pdelngtnjltobace'
+EMAIL_PORT = 465
+DEFAULT_FROM_EMAIL = 'test123123123t@yandex.ru'
+SERVER_EMAIL = EMAIL_HOST_USER
+
+# Redis related settings
+
+REDIS_HOST ='localhost'
+REDIS_PORT = '6379'
+CELERY_BROKER_URL = 'redis://' + REDIS_HOST + ':' + REDIS_PORT
+CELERY_BROKER_TRANSPORT_OPTIONS = {'visibility_timeout': 3600}
+CELERY_RESULT_BACKEND = 'redis://' + REDIS_HOST + ':' + REDIS_PORT
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+broker_connection_retry_on_startup=True
+SECRET_KEY = "django-insecure-8+(fgey3gfk39v390_%c%_h9tf4cii@as+p8a_9+$lf9uka5w1"

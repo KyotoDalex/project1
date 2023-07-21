@@ -1,0 +1,52 @@
+.vs-blog-wide {
+  display: flex;
+  align-items: center;
+
+  .vs-blog-image {
+    width: 350px;
+    margin-right: 30px;
+  }
+
+  .vs-blog-content {
+    flex: 1;
+    padding-right: 30px;
+  }
+
+  .vs-blog-image-md {
+    width: 300px;
+    margin-right: 30px;
+  }
+  
+}
+
+
+@include lg {
+  .vs-blog-wide {
+    display: block;
+
+    .vs-blog-image-md,
+    .vs-blog-image {
+      width: 100%;
+      margin-right: 0;
+    }
+
+    .vs-blog-content {
+      width: 100%;
+      padding: 15px 20px;
+
+      &.p-0 {
+        padding: 15px 20px !important;
+      }
+    }
+
+    &:not([class*="bg-"]) {
+      .vs-blog-content {
+        padding: 15px 0 0 0;
+
+        &.p-0 {
+          padding: 15px 0 0 0 !important;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,374 @@
+{% load wagtailimages_tags static wagtailcore_tags my_tags %}
+<!doctype html>
+<html class="no-js" lang="zxx">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>ЮГРАИНФО</title>
+    <meta name="author" content="Vecuro">
+    <meta name="description" content="ИА Мангазея-Новая Югра специализируется на публикации собственных, а также наиболее примечательных материалов СМИ. Зарегистрируйтесь на Портале Информационного агентства МАНГАЗЕЯ и Ваши новости, статьи, обзоры и интервью появятся в федеральной ленте новостей" />
+    <meta name="keywords" content="новости,события,происшествия,Югра,Ханты-Мансийск,ХМАО,Тюмень,Ямало-Ненецкий,Тюменская,ЯНАО,УРФО,Уральский,УФО,Челябинск,Курган,Екатеринбург,Россия,сенсации,криминал" />
+    <meta name="robots" content="INDEX,FOLLOW">
+
+    <!-- Mobile Specific Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!--==============================
+	   Google Web Fonts
+	============================== -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+    <!-- Favicons - Place favicon.ico in the root directory -->
+    <link rel="apple-touch-icon" sizes="57x57" href="../static/assets/img/favicons/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="../static/assets/img/favicons/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="../static/assets/img/favicons/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="../static/assets/img/favicons/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="../static/assets/img/favicons/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="../static/assets/img/favicons/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="../static/assets/img/favicons/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="../static/assets/img/favicons/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../static/assets/img/favicons/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="../static/assets/img/favicons/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../static/assets/img/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="../static/assets/img/favicons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../static/assets/img/favicons/favicon-16x16.png">
+    <link rel="manifest" href="{%static 'assets/img/favicons/manifest.json'%}">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="assets/img/favicons/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+    <!--==============================
+	    All CSS File
+	============================== -->
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href={% static "css/bootstrap.min.css"%}>
+    <!-- Fontawesome Icon -->
+    <link rel="stylesheet" href={% static "css/fontawesome.min.css"%}>
+    <!-- Date Picker -->
+    <link rel="stylesheet" href={% static "css/jquery.datetimepicker.min.css"%}>
+    <!-- Magnific Popup -->
+    <link rel="stylesheet" href={% static "css/magnific-popup.min.css"%}>
+    <!-- Slick Slider -->
+    <link rel="stylesheet" href={% static "css/slick.min.css"%}>
+    <!-- Theme Custom CSS -->
+    <link rel="stylesheet" href={% static "css/style.css"%}>
+    <!-- Theme Color CSS -->
+    <link rel="stylesheet" href={% static "css/theme-color1.css"%}>
+
+
+</head>
+
+<body>
+
+
+    <!--[if lte IE 9]>
+    	<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+  <![endif]-->
+
+
+
+    <!--********************************
+   		Code Start From Here 
+	******************************** -->
+
+
+    <!--==============================
+     Preloader
+  ==============================-->
+    <div class="preloader  ">
+        <div class="preloader-inner">
+            <div class="loader-logo">
+                <img src="" alt="">
+            </div>
+            <div class="loader-wrap pt-2">
+                <span class="loader"></span>
+            </div>
+        </div>
+    </div>
+    <!--==============================
+    Popup Search Box
+    ============================== -->
+    <div class="popup-search-box d-none d-lg-block  ">
+        <button class="searchClose border-theme text-theme"><i class="fal fa-times"></i></button>
+        <form action="#">
+            <input type="text" class="border-theme" placeholder="Найти..">
+            <button type="submit"><i class="fal fa-search"></i></button>
+        </form>
+    </div>
+    <!--==============================
+    Mobile Menu
+  ============================== -->
+    <div class="vs-menu-wrapper">
+        <div class="vs-menu-area">
+            <button class="vs-menu-toggle text-theme"><i class="fal fa-times"></i></button>
+            <div class="mobile-logo">
+                <a href="/"><img src="../static/assets/img/logo0000.png" alt="ЮГРАИНФО"></a>
+            </div>
+            <div class="vs-mobile-menu link-inherit"></div><!-- Menu Will Append With Javascript -->
+        </div>
+    </div>
+    <!--==============================
+        Header Area
+    ==============================-->
+         <header class="header-wrapper header-layout2">
+
+        <div class="bg-dark style-dark d-none d-lg-block">
+            <div class="container-xl">
+                <div class="d-flex align-items-center">
+                    <span class="breaking-news bg-theme"><i class="fas fa-bolt mr-2"></i>Срочные Новости</span>
+                    <div class="breaking-news-body">
+                        <div class="vs-carousel arrow-y-right" data-method="GET" data-arrows="true" data-xlarrows="true" data-mlarrows="true" data-lgarrows="true" data-vertical="true" data-slidetoshow="1">
+                       {% for post in latest_posts %}
+                           {% if forloop.counter0 < 9 %}
+                            <div class="link-inherit">
+                                <p class="d-inline-block mb-0" ><a href="{{ post.url }}" class="text-white">{{ post.title| upfirstletter}} </a></p>
+                            </div>
+                           {% endif %}
+                        {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="py-2 py-lg-3">
+            <div class="container">
+                <div class="row align-items-center gutters-20">
+                    <div class="col-6 col-lg-2 pb-xl-2">
+                        <div class="header-logo">
+                            <a id="logo" href="/"><img src="../static/assets/img/logo0000.png" alt="ЮграИнфо" ></a>
+                        </div>
+                    </div>
+                    <div class="col-6 col-lg-5 col-xl-6 text-right">
+                        <!-- Mobile Menu Toggler -->
+                        <button class="vs-menu-toggle d-inline-block d-lg-none"><i class="far fa-bars"></i></button>
+                    </div>
+                    <div class="col-lg-2 col-xl-3">
+                        <div class="header-btn text-right d-none d-lg-block">
+                            <div class="link-inherit d-none d-xl-inline-block mr-3">
+                                <i class="fal fa-user mr-1"></i>
+                                <a href="account.html">Войти</a> /
+                                <a href="account.html">Регистрация</a>
+                            </div>
+                            <a href="#" class="icon-btn searchBoxTggler"><i class="far fa-search"></i></a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="bg-secondary d-none d-lg-block sticky">
+            <div class="container position-relative">
+                <div class="row align-items-center">
+                    <div class="col-lg-8 position-static">
+                        <nav class="main-menu menu-style2 mobile-menu-active" data-expand="992">
+                            <ul>
+                                <li>
+                                    <a href="/">Главная</a>
+                                </li>
+                                <li>
+                                    <a href="/news/">Последние новости</a>
+                                </li>
+                                <li>
+                                    <a href="/hmao/">ХМАО</a>
+                                </li>
+                                <li>
+                                    <a href="/yanao/">ЯНАО</a>
+                                </li>
+                                <li>
+                                    <a href="/tyumen/">Тюменская область</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="col-lg-4 text-right">
+                        <div class="header-meta-style1 border-dark-light">
+                            <ul>
+                                <li><i class="fal fa-calendar-alt"></i>Июнь 1, 2023</li>
+                                <li><i class="far fa-clock"></i>18:00</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!--==============================
+    Breadcumb
+============================== -->
+    <div class="breadcumb-wrapper breadcumb-layout1 bg-dark py-85" data-bg-src="" data-overlay="title" data-opacity="4">
+        <div class="container z-index-common">
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-left mb-1 mb-md-0">
+                    <h1 class="breadcumb-title h4 text-medium text-white my-0">Ханты-Мансийский АО</h1>
+                </div>
+                <div class="col-md-6 text-right">
+                    <ul class="breadcumb-menu-style1 style-dark">
+                        <li><a href="/"><i class="fas fa-home"></i>Главная</a></li>
+                        <li class="active">Ханты-Мансийский АО</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--==============================
+     Archive Area
+    ==============================-->
+     <section class="vs-author-article bg-smoke space-top space-md-bottom">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                  {% for post in ugra_page %}
+                            <div class="vs-blog vs-blog-wide mb-20">
+                                {% for img_block in post.body %}
+                                     {% if img_block.block_type == 'main_image' %}
+                                        <div class="vs-blog-image-md image-scale-hover">
+                                        {% image img_block.value fill-300x220 as img %}
+                                            <a href="{{ post.url }}"><img src="{{img.url}}" alt="{{ img.alt}}" class="w-100"></a>
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+                                <div class="vs-blog-content p-0">
+                                    <div class="blog-meta text-xs style-slash mb-1">
+                                        <a href="{{ post.url }}">{{ post.pub_date }}</a>
+                                    </div>
+                                    <h3 class="blog-title text-20 h4 mb-1"><a href="{{ post.url }}">{{ post.title|upfirstletter}}</a></h3>
+                                    {% for textblock in post.body %}
+                                        {% if forloop.counter0 < 2  %}
+                                            {% if textblock.block_type == 'Text' %}
+                                                 <p>{{ textblock.value |richtext}}</p>
+                                            {% endif %}
+                                        {% endif %}
+                                    {% endfor %}
+                                   <a href="{{ post.url }}" class="link-btn">Читать далее...<i class="far fa-angle-right"></i></a>
+                                </div>
+                            </div>
+                  {% endfor %}
+                    <div class="pagination-wrapper pagination-layout1 list-style-none pt-xl-4 mb-30">
+
+                            <ul>
+                            {% if ugra_page.has_previous %}
+                                <li><a href="?page={{ ugra_page.previous_page_number }}"><i class="fas fa-chevron-left"></i></a></li>
+                            {% else%}
+                                <li class="disabled"><i class="fas fa-chevron-left"></i></li>
+                            {% endif %}
+                            {% for i in ugra_page.paginator.page_range %}
+                                <li><a href="?page={{ i }}" class="active">{{ i }}</a></li>
+                            {% endfor %}
+
+                            {% if ugra_page.has_next %}
+                                <li><a href="?page={{ ugra_page.next_page_number }}"><i class="fas fa-chevron-right"></i></a></li>
+                            {% else %}
+                                <li class="disabled"><i class="fas fa-chevron-right"></i></li>
+                            </ul>
+                            {% endif %}
+
+                    </div>
+
+                </div>  
+            </div>
+        </div>
+    </section>
+    <!--==============================
+			Footer Area
+	==============================-->
+    <footer class="footer-wrapper footer-layout1 style-dark bg-dark" data-overlay="title" data-opacity="8">
+        <div class="footer-widget footer-widget-layout1 pt-100 pb-70  ">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-sm-6 col-lg-3 col-xl-4">
+                        <div class="widget  ">
+                            <h3 class="widget_title">© 2009 - 2023 ИА Мангазея-Новая Югра.</h3>
+                            <div class="vs-widget-about">
+                                <p class="widget-about-text mb-10">Свидетельство о регистрации регионального СМИ "Информационное агентство МАНГАЗЕЯ - Новая Югра" ИА №ТУ 86-00139 выдано Управлением Роскомнадзора по ХМАО-Югре и ЯНАО</p>
+                                <p class="widget-about-text mb-10">Отдельные публикации могут содержать информацию, не предназначенную для пользователей до 16 лет.</p>
+                                <div class="media align-items-center">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-4 col-xl-3">
+
+                        <div class="widget  ">
+                            <h3 class="widget_title">Недавние Новости</h3>
+                            <div class="recent-post-style2">
+                                {% for post in all_news %}
+                                    {% if forloop.counter0 < 2 %}
+                                        <div class="recent-post media">
+                                            <div class="media-img">
+                                                {% for img_block in post.body %}
+                                                    {% if img_block.block_type == 'main_image' %}
+                                                    {% image img_block.value fill-80x80 as sm_img %}
+                                                    <img src="{{sm_img.url}}" alt="Recent Post Image">
+                                                    {% endif %}
+                                                {% endfor %}
+                                            </div>
+                                            <div class="media-body">
+                                                <h4 class="recent-post-title h6 mb-0 "><a href="{{ post.url }}">{{ post.title|upfirstletter }}</a></h4>
+                                                <span class="text-xs"><i class="fal fa-calendar-alt "></i>{{ post.pub_date}}</span>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                               {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-2 col-xl-2">
+                        <div class="widget widget_nav_menu   ">
+                            <h3 class="widget_title">Быстрые ссылки</h3>
+                            <div class="menu-all-pages-container">
+                                <ul class="menu">
+                                    <li><a href="lastnews.html">Последние новости</a></li>
+                                    <li><a href="/hmao/">ХМАО</a></li>
+                                    <li><a href="/yanao/">ЯНАО</a></li>
+                                    <li><a href="/tyumen/">Тюменская область</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-3 col-xl-3">
+                       {% include 'sub.html' %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--********************************
+			Code End  Here 
+	******************************** -->
+
+    <!-- Scroll Top Top Button -->
+    <a href="#" class="scrollToTop icon-btn bg-theme border-before-theme"><i class="far fa-angle-up"></i></a>
+
+
+
+
+    <!--==============================
+        All Js File
+    ============================== -->
+    <!-- Jquery -->
+    <script src={% static "js/vendor/jquery-1.12.4.min.js"%}></script>
+    <!-- Slick Slider -->
+    <script src={% static "js/slick.min.js"%}></script>
+    <!-- Bootstrap -->
+    <script src={% static "js/bootstrap.min.js"%}></script>
+    <!-- Magnific Popup -->
+    <script src={% static "js/jquery.magnific-popup.min.js"%}></script>
+    <!-- Nice Select -->
+    <script src={% static "js/jquery.nice-select.min.js"%}></script>
+    <!-- Custom Carousel -->
+    <script src={% static "js/vscustom-carousel.min.js"%}></script>
+    <!-- Mobile Menu -->
+    <script src={% static "js/vsmenu.min.js"%}></script>
+    <!-- Form Js -->
+    <script src={% static "js/ajax-mail.js"%}></script>
+    <!-- Google Map js -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDC3Ip9iVC0nIxC6V14CKLQ1HZNF_65qEQ"></script>
+    <script src={% static "js/map.js"%}></script>
+    <!-- Main Js File -->
+    <script src={% static "js/main.js" %}></script>
+
+</body>
+
+</html>

@@ -1,0 +1,23 @@
+
+.style-dark {
+  .widget_nav_menu a,
+  .widget_meta a,
+  .widget_pages a,
+  .widget_archive a,
+  .widget_categories a {
+    color: $white-color;
+  }
+}
+
+
+.footer-copyright.light-white-border {
+  border-top: 1px solid rgba(255,255,255,0.2);
+}
+
+
+@include sm {
+  .footer-copyright.py-30 {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+}

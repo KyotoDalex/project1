@@ -1,4 +1,4 @@
-{% load wagtailcore_tags %}
+{% load wagtailcore_tags wagtailimages_tags %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,6 +7,26 @@
 
 </head>
 <body>
-    {% include_block page.body %}
+
+
+{% block content %}
+        <div class="container">
+            <h1>Breaking News</h1>
+            {% for post in latest_posts %}
+                <div class="row">
+                    <div class="col-sm-4">
+                        img here
+                    </div>
+                    <div class="col-sm-8">
+                        <a href="{{ post.url }}" aria-label="links"><span class="sr-only">{{ post.title }}</span> </a>
+                        {{ post.heading }}
+                    </div>
+                </div>
+                 <br>
+            {% endfor %}
+        </div>
+
+
+{% endblock %}
 </body>
 </html>
