@@ -220,4 +220,4 @@ CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 broker_connection_retry_on_startup=True
 SECRET_KEY = "django-insecure-8+(fgey3gfk39v390_%c%_h9tf4cii@as+p8a_9+$lf9uka5w1"
-ALLOWED_HOSTS = ['default-ru-central1-b','www.default-ru-central1-b.com']
+ALLOWED_HOSTS = ['ugrainfo.ru-central1.internal','www.ugrainfo.ru-central1.internal.com']
