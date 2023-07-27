@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
-
+from wagtail.embeds.oembed_providers import youtube
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 
@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django_extensions",
+    'rest_framework',
 
     'fontawesomefree',
     'sass_processor'
@@ -99,6 +100,10 @@ TEMPLATES = [
                 'post.context_processors.yamal_listing',
                 'post.context_processors.ugra_listing',
                 'post.context_processors.author_check',
+                'post.context_processors.random_person',
+                'post.context_processors.hmao_valid',
+                'post.context_processors.yamal_valid',
+                'post.context_processors.tyumen_valid',
                 "django.template.context_processors.debug",
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
@@ -112,7 +117,15 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = "ugrainfo.wsgi.application"
+WAGTAILEMBEDS_FINDERS = [
 
+        {
+            'class': 'wagtail.embeds.finders.oembed',
+            'providers': [youtube],
+            'options': {'scheme': 'https'}
+        },
+
+]
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
@@ -152,7 +165,7 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
@@ -210,7 +223,7 @@ SERVER_EMAIL = EMAIL_HOST_USER
 
 # Redis related settings
 
-REDIS_HOST ='localhost'
+REDIS_HOST = 'localhost'
 REDIS_PORT = '6379'
 CELERY_BROKER_URL = 'redis://' + REDIS_HOST + ':' + REDIS_PORT
 CELERY_BROKER_TRANSPORT_OPTIONS = {'visibility_timeout': 3600}
@@ -218,6 +231,7 @@ CELERY_RESULT_BACKEND = 'redis://' + REDIS_HOST + ':' + REDIS_PORT
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
-broker_connection_retry_on_startup=True
+broker_connection_retry_on_startup = True
 SECRET_KEY = "django-insecure-8+(fgey3gfk39v390_%c%_h9tf4cii@as+p8a_9+$lf9uka5w1"
-ALLOWED_HOSTS = ['ugrainfo.ru-central1.internal','www.ugrainfo.ru-central1.internal.com']
+
+

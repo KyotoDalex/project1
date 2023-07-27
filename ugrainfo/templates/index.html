@@ -1,6 +1,6 @@
-{% load wagtailimages_tags %}
+{% load wagtailimages_tags static wagtailcore_tags my_tags  %}
+{% get_menu 'footer' as footer %}
 
-{% load static wagtailcore_tags my_tags %}
 
 <!doctype html>
 <html class="no-js" lang="zxx">
@@ -104,7 +104,7 @@
         <div class="vs-menu-area">
             <button class="vs-menu-toggle text-theme"><i class="fal fa-times"></i></button>
             <div class="mobile-logo">
-                <a href="/"><img src="../static/assets/img/logo0000.png.png" alt="ЮГРАИНФО"></a>
+                <a href="/"><img src="./assets/ugralogo.png" alt="ЮГРАИНФО"></a>
             </div>
             <div class="vs-mobile-menu link-inherit"></div><!-- Menu Will Append With Javascript -->
         </div>
@@ -138,7 +138,7 @@
                 <div class="row align-items-center gutters-20">
                     <div class="col-6 col-lg-2 pb-xl-2">
                         <div class="header-logo">
-                            <a id="logo" href="/"><img src="../static/assets/img/logo0000.png" alt="ЮграИнфо" ></a>
+                            <a id="logo" href="/"><img src="../static/assets/ugralogo.png" alt="ЮграИнфо" ></a>
                         </div>
                     </div>
                     <div class="col-6 col-lg-5 col-xl-6 text-right">
@@ -147,11 +147,6 @@
                     </div>
                     <div class="col-lg-2 col-xl-3">
                         <div class="header-btn text-right d-none d-lg-block">
-                            <div class="link-inherit d-none d-xl-inline-block mr-3">
-                                <i class="fal fa-user mr-1"></i>
-                                <a href="account.html">Войти</a> /
-                                <a href="account.html">Регистрация</a>
-                            </div>
                             <a href="#" class="icon-btn searchBoxTggler"><i class="far fa-search"></i></a>
                         </div>
                     </div>
@@ -186,8 +181,8 @@
                     <div class="col-lg-4 text-right">
                         <div class="header-meta-style1 border-dark-light">
                             <ul>
-                                <li><i class="fal fa-calendar-alt"></i>Июнь 1, 2023</li>
-                                <li><i class="far fa-clock"></i>18:00</li>
+                                <li><i class="fal fa-calendar-alt"></i><span id="datecalendar"></span></li>
+                                <li><i class="far fa-clock"></i><span id="datetime"></span></li>
                             </ul>
                         </div>
                     </div>
@@ -242,7 +237,7 @@
                                     <div class="vs-blog-content overlay-bottom-sm style-dark-sm">
                                         <h2 class="blog-title h3 mb-2 w-xl-80"><a href="{{ post.url }}">{{ post.title|upfirstletter}}</a></h2>
                                         <div class="blog-meta text-xs">
-                                            <a href="post.html"><i class="fal fa-calendar-alt"></i>{{ post.pub_date}}</a>
+                                            <a href="{{ post.url }}"><i class="fal fa-calendar-alt"></i>{{ post.pub_date}}</a>
                                         </div>
                                     </div>
                                 </div>
@@ -329,27 +324,28 @@
                     {% endif %}
                 {% endfor %}
                   {% for random_post in all_news %}
-                    {% if forloop.counter0 < 1 %}
-                        <div class="col-sm-6 col-lg-3">
-                            <div class="vs-blog image-scale-hover">
-                                <a href="{{ random_post.url }}" class="overlay-sm gradient-black-lg"></a>
-                                <div class="vs-blog-image">
-                                    {% for random_image in random_post.body %}
-                                        {% if random_image.block_type == 'main_image' %}
-                                        {% image random_image.value fill-270x284 as img %}
-                                        <img src="{{img.url}}" alt="{{ img.alt}}" class="w-100">
-                                        {% endif %}
-                                    {% endfor %}
-                                </div>
-                                <div class="vs-blog-conent overlay-bottom-sm style-dark-sm">
-                                    <h3 class="blog-title text-20 mb-2"><a href="{{ random_post.url }}">{{ random_post.title|upfirstletter}}</a></h3>
-                                    <div class="blog-meta text-xs">
-                                        <a href="{{ random_post.url }}"><i class="fal fa-calendar-alt"></i>{{ random_post.pub_date}}</a>
+
+                        {% if forloop.counter0 < 1 %}
+                            <div class="col-sm-6 col-lg-3">
+                                <div class="vs-blog image-scale-hover">
+                                    <a href="{{ random_post.url }}" class="overlay-sm gradient-black-lg"></a>
+                                    <div class="vs-blog-image">
+                                        {% for random_image in random_post.body %}
+                                            {% if random_image.block_type == 'main_image' %}
+                                            {% image random_image.value fill-270x284 as img %}
+                                            <img src="{{img.url}}" alt="{{ img.alt}}" class="w-100">
+                                            {% endif %}
+                                        {% endfor %}
+                                    </div>
+                                    <div class="vs-blog-conent overlay-bottom-sm style-dark-sm">
+                                        <h3 class="blog-title text-20 mb-2"><a href="{{ random_post.url }}">{{ random_post.title|upfirstletter}}</a></h3>
+                                        <div class="blog-meta text-xs">
+                                            <a href="{{ random_post.url }}"><i class="fal fa-calendar-alt"></i>{{ random_post.pub_date}}</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    {% endif %}
+                        {% endif %}
                 {% endfor %}
             </div>
         </div>
@@ -552,10 +548,10 @@
                                                         <a href="{{ full_xmao_post.url }}"><i class="fal fa-calendar-alt"></i>{{ full_xmao_post.pub_date }}</a>
                                                     </div>
                                                     {% for block in full_xmao_post.body %}
-                                                        {% if block.block_type == 'Text' %}
-                                                            {% if forloop.counter0 < 3 %}
+                                                        {% if block.block_type == 'main_text' %}
+
                                                              <p>{{ block.value| richtext}}</p>
-                                                            {% endif %}
+
                                                         {% endif %}
                                                     {% endfor %}
                                                     <a href="{{ full_xmao_post.url }}" class="link-btn">Читать далее<i class="far fa-angle-right"></i></a>
@@ -563,9 +559,6 @@
                                     </div>
                             {% endif %}
                         {% endfor %}
-                        <div class="text-center pt-10 mb-30">
-                                        <a href="#" class="vs-btn">Загрузить далее...</a>
-                        </div>
                         </div>
                         <div class="tab-pane " id="yamal2" aria-labelledby="yamal2-tab">
                              {% for yamal_post in yamal_posts %}
@@ -584,20 +577,17 @@
                                             <a href="{{ yamal_post.url }}"><i class="fal fa-calendar-alt"></i>Dec 20, 2020</a>
                                         </div>
                                           {% for block in yamal_post.body %}
-                                                {% if forloop.counter0 < 3 %}
-                                                    {% if block.block_type == 'Text' %}
+
+                                                    {% if block.block_type == 'main_text' %}
 
                                                      <p>{{ block.value| richtext}}</p>
                                                     {% endif %}
-                                                {% endif %}
+
                                             {% endfor %}
                                         <a href="{{ yamal_post.url }}" class="link-btn">Читать далее<i class="far fa-angle-right"></i></a>
                                     </div>
                                 </div>
                             {% endfor %}
-                            <div class="text-center pt-10 mb-30">
-                                    <a href="#" class="vs-btn">Загрузить далее...</a>
-                            </div>
                         </div>
                         <div class="tab-pane " id="tyumen2" aria-labelledby="tyumen2-tab">
                              {% for tyumen_post in tyumen_posts %}
@@ -616,20 +606,14 @@
                                             <a href="{{ tyumen_post.url }}"><i class="fal fa-calendar-alt"></i>{{ tyumen_post.pub_date }}</a>
                                         </div>
                                            {% for block in tyumen_post.body %}
-                                                {% if forloop.counter0 < 3 %}
-                                                    {% if block.block_type == 'Text' %}
-
+                                                    {% if block.block_type == 'main_text' %}
                                                      <p>{{ block.value| richtext}}</p>
-                                                    {% endif %}
                                                 {% endif %}
                                             {% endfor %}
                                         <a href="{{ tyumen_post.url }}" class="link-btn">Читать далее<i class="far fa-angle-right"></i></a>
                                     </div>
                                 </div>
                                 {% endfor %}
-                                 <div class="text-center pt-10 mb-30">
-                                    <a href="#" class="vs-btn">Загрузить далее...</a>
-                                </div>
                             </div>
                         </div>
                 </div>
@@ -667,9 +651,10 @@
                 <div class="row justify-content-center">
                     <div class="col-sm-6 col-lg-3 col-xl-4">
                         <div class="widget  ">
-                            <h3 class="widget_title">© 2009 - 2023 ИА Мангазея-Новая Югра.</h3>
+                            {% now 'Y' as year %}
+                            <h3 class="widget_title">© 2009 - {{ year }} ИА Мангазея-Новая Югра.</h3>
                             <div class="vs-widget-about">
-                                <p class="widget-about-text mb-10">Свидетельство о регистрации регионального СМИ "Информационное агентство МАНГАЗЕЯ - Новая Югра" ИА №ТУ 86-00139 выдано Управлением Роскомнадзора по ХМАО-Югре и ЯНАО</p>
+                               <p class="widget-about-text mb-10">Свидетельство о регистрации регионального СМИ "Информационное агентство МАНГАЗЕЯ - Новая Югра" ИА №ТУ 86-00139 выдано Управлением Роскомнадзора по ХМАО-Югре и ЯНАО</p>
                                 <p class="widget-about-text mb-10">Отдельные публикации могут содержать информацию, не предназначенную для пользователей до 16 лет.</p>
                                 <div class="media align-items-center">
                                 </div>
@@ -684,14 +669,6 @@
                                 {% for post in all_news %}
                                     {% if forloop.counter0 < 2 %}
                                         <div class="recent-post media">
-                                            <div class="media-img">
-                                                {% for img_block in post.body %}
-                                                    {% if img_block.block_type == 'main_image' %}
-                                                    {% image img_block.value fill-80x80 as sm_img %}
-                                                    <img src="{{sm_img.url}}" alt="Recent Post Image">
-                                                    {% endif %}
-                                                {% endfor %}
-                                            </div>
                                             <div class="media-body">
                                                 <h4 class="recent-post-title h6 mb-0 "><a href="{{ post.url }}">{{ post.title|upfirstletter }}</a></h4>
                                                 <span class="text-xs"><i class="fal fa-calendar-alt "></i>{{ post.pub_date}}</span>
@@ -758,7 +735,8 @@
     <script src={% static "js/map.js"%}></script>
     <!-- Main Js File -->
     <script src={% static "js/main.js" %}></script>
-
+    <!-- Current Time -->
+    <script src={% static 'js/current-time.js' %}></script>
 </body>
 
 </html>
