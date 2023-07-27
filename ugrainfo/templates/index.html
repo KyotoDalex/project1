@@ -197,73 +197,71 @@
         <div class="container-fluid px-1 overflow-hidden">
             <div class="row gutters-5">
                 <div class="col-lg-4 col-xl-3 d-none d-lg-block">
-
                     <div class="vs-carousel" data-slidetoshow="1" id="slideno1" data-asnavfor="#slideno2, #slideno3">
                         {% for post in all_news %}
-
-                            <div class="vs-blog mb-1 ">
-                                <a href="{{ post.url }}" class="overlay gradient-black-md"></a>
-                                <div class="vs-blog-image">
-                                    {% for block in post.body %}
-                                        {% if block.block_type == 'main_image' %}
+                         {% for block in post.body %}
+                                 {% if block.block_type == 'main_image' %}
+                                    <div class="vs-blog mb-1 ">
+                                        <a href="{{ post.url }}" class="overlay gradient-black-md"></a>
+                                        <div class="vs-blog-image">
                                             {% image block.value fill-470x554 as slide1 %}
-                                                <a href="{{ post.url }}"><img src="{{ slide1.url }}" alt="BlogImage" class="w-100"></a>
-                                        {% endif %}
-                                    {% endfor %}
-                                </div>
-                                <div class="vs-blog-content overlay-bottom style-dark">
-                                    <h2 class="blog-title h4 mb-1"><a href="{{ post.url }}">{{ post.title|upfirstletter}}</a></h2>
-                                    <div class="blog-meta text-xs">
-                                        <a href="{{ post.url }}"><i class="fal fa-calendar-alt"></i>{{ post.pub_date }}</a>
+                                            <a href="{{ post.url }}"><img src="{{ slide1.url }}" alt="BlogImage" class="w-100"></a>
+                                            <div class="vs-blog-content overlay-bottom style-dark">
+                                                 <h2 class="blog-title h4 mb-1"><a href="{{ post.url }}">{{ post.title|upfirstletter}}</a></h2>
+                                                <div class="blog-meta text-xs">
+                                                    <a href="{{ post.url }}"><i class="fal fa-calendar-alt"></i>{{ post.pub_date }}</a>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
+                                {% endif %}
+                            {% endfor %}
                          {% endfor %}
                     </div>
                 </div>
                         <div class="col-lg-8 col-xl-6">
                             <div class="vs-carousel arrow-rounded arrow-lg arrow-y-align arrow-has-margin" id="slideno2" data-asnavfor="#slideno1, #slideno3" data-slidetoshow="1" data-arrows="false" data-xlarrows="true" data-mlarrows="true" data-lgarrows="true" data-mdarrows="true" data-smarrows="true" data-xsarrows="true">
                             {% for post in all_news2 %}
-                                <div class="vs-blog mb-1">
-                                    <a href="{{ post.url }}" class="overlay-sm gradient-black-md"></a>
-                                    <div class="vs-blog-image">
-                                        {% for block in post.body %}
-                                            {% if block.block_type == 'main_image' %}
-                                                  {% image block.value fill-945x554 as slide2 %}
-                                                <a href="{{ post.url }}"><img src="{{slide2.url}}" alt="Blog Image" class="w-100"></a>
-                                            {% endif %}
-                                        {% endfor %}
-                                    </div>
-                                    <div class="vs-blog-content overlay-bottom-sm style-dark-sm">
-                                        <h2 class="blog-title h3 mb-2 w-xl-80"><a href="{{ post.url }}">{{ post.title|upfirstletter}}</a></h2>
-                                        <div class="blog-meta text-xs">
-                                            <a href="{{ post.url }}"><i class="fal fa-calendar-alt"></i>{{ post.pub_date}}</a>
-                                        </div>
-                                    </div>
-                                </div>
+                                 {% for block in post.body %}
+                                    {% if block.block_type == 'main_image' %}
+                                            <div class="vs-blog mb-1">
+                                                <a href="{{ post.url }}" class="overlay-sm gradient-black-md"></a>
+                                                <div class="vs-blog-image">
+                                                    {% image block.value fill-945x554 as slide2 %}
+                                                    <a href="{{ post.url }}"><img src="{{slide2.url}}" alt="Blog Image" class="w-100"></a>
+                                                </div>
+                                                <div class="vs-blog-content overlay-bottom-sm style-dark-sm">
+                                                    <h2 class="blog-title h3 mb-2 w-xl-80"><a href="{{ post.url }}">{{ post.title|upfirstletter}}</a></h2>
+                                                    <div class="blog-meta text-xs">
+                                                        <a href="{{ post.url }}"><i class="fal fa-calendar-alt"></i>{{ post.pub_date}}</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    {% endif %}
+                                {% endfor %}
                             {% endfor %}
                             </div>
                         </div>
                             <div class="col-xl-3 d-none d-xl-block">
                                 <div class="vs-carousel" data-slidetoshow="1" id="slideno3" data-asnavfor="#slideno2, #slideno1">
                                   {% for post in all_news3 %}
-                                    <div class="vs-blog mb-1">
-                                            <a href="{{ post.url }}" class="overlay gradient-black-md"></a>
-                                          <div class="vs-blog-image">
-                                                {% for block in post.body %}
-                                                    {% if block.block_type == 'main_image' %}
+                                    {% for block in post.body %}
+                                        {% if block.block_type == 'main_image' %}
+                                                <div class="vs-blog mb-1">
+                                                    <a href="{{ post.url }}" class="overlay gradient-black-md"></a>
+                                                    <div class="vs-blog-image">
                                                         {% image block.value fill-470x554 as slide3 %}
-                                                            <a href="{{ post.url }}"><img src="{{ slide3.url }}" alt="BlogImage" class="w-100"></a>
-                                                    {% endif %}
-                                                {% endfor %}
-                                             </div>
-                                            <div class="vs-blog-content overlay-bottom style-dark">
-                                                <h2 class="blog-title h4 mb-1"><a href="{{ post.url }}">{{ post.title|upfirstletter}}</a></h2>
-                                                <div class="blog-meta text-xs">
-                                                    <a href="{{ post.url }}"><i class="fal fa-calendar-alt"></i>{{ post.pub_date}}</a>
+                                                        <a href="{{ post.url }}"><img src="{{ slide3.url }}" alt="BlogImage" class="w-100"></a>
+                                                    </div>
+                                                    <div class="vs-blog-content overlay-bottom style-dark">
+                                                        <h2 class="blog-title h4 mb-1"><a href="{{ post.url }}">{{ post.title|upfirstletter}}</a></h2>
+                                                        <div class="blog-meta text-xs">
+                                                            <a href="{{ post.url }}"><i class="fal fa-calendar-alt"></i>{{ post.pub_date}}</a>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                    </div>
+                                        {% endif %}
+                                    {% endfor %}
                                   {% endfor %}
                             </div>
                 </div>

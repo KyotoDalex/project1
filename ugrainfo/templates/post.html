@@ -1,4 +1,5 @@
-{% load wagtailimages_tags static wagtailcore_tags my_tags%}
+{% load wagtailembeds_tags wagtailimages_tags static wagtailcore_tags my_tags wagtailvideos_tags %}
+
 {% get_author 'main' as  editor   %}
 {% get_menu 'footer' as footer %}
 
@@ -78,16 +79,7 @@
     <!--==============================
      Preloader
   ==============================-->
-    <div class="preloader  ">
-        <div class="preloader-inner">
-            <div class="loader-logo">
-                <img src="" alt="">
-            </div>
-            <div class="loader-wrap pt-2">
-                <span class="loader"></span>
-            </div>
-        </div>
-    </div>
+
     <!--==============================
     Popup Search Box
     ============================== -->
@@ -139,7 +131,7 @@
                 <div class="row align-items-center gutters-20">
                     <div class="col-6 col-lg-2 pb-xl-2">
                         <div class="header-logo">
-                            <a id="logo" href="/"><img src="../static/assets/img/logo0000.png" alt="ЮграИнфо" ></a>
+                            <a id="logo" href="/"><img src="../static/assets/ugralogo.png" alt="ЮграИнфо" ></a>
                         </div>
                     </div>
                     <div class="col-6 col-lg-5 col-xl-6 text-right">
@@ -148,11 +140,6 @@
                     </div>
                     <div class="col-lg-2 col-xl-3">
                         <div class="header-btn text-right d-none d-lg-block">
-                            <div class="link-inherit d-none d-xl-inline-block mr-3">
-                                <i class="fal fa-user mr-1"></i>
-                                <a href="account.html">Войти</a> /
-                                <a href="account.html">Регистрация</a>
-                            </div>
                             <a href="#" class="icon-btn searchBoxTggler"><i class="far fa-search"></i></a>
                         </div>
                     </div>
@@ -187,8 +174,8 @@
                     <div class="col-lg-4 text-right">
                         <div class="header-meta-style1 border-dark-light">
                             <ul>
-                                <li><i class="fal fa-calendar-alt"></i>Июнь 1, 2023</li>
-                                <li><i class="far fa-clock"></i>18:00</li>
+                                <li><i class="fal fa-calendar-alt"></i><span id="datecalendar"></span></li>
+                                <li><i class="far fa-clock"></i><span id="datetime"></span></li>
                             </ul>
                         </div>
                     </div>
@@ -202,13 +189,32 @@
     <div class="breadcumb-wrapper breadcumb-layout1 background-image py-85 bg-dark" data-bg-src="" data-overlay="title" data-opacity="4">
         <div class="container z-index-common">
             <div class="row align-items-center">
-                <div class="col-md-6 text-center text-md-left mb-1 mb-md-0">
-                    <h1 class="breadcumb-title h4 text-medium text-white my-0">{{ page.title|upfirstletter  }}</h1>
-                </div>
+
                 <div class="col-md-6 text-right">
                     <ul class="breadcumb-menu-style1 style-dark">
-                        <li><a href="index.html"><i class="fas fa-home"></i>Главная</a></li>
-                        <li class="active">Тема</li>
+                         <li><a href="/"><i class="fas fa-home"></i>Главная</a></li>
+                            {% if page in tyumen_page%}
+                                <li class="active"><a href="/tyumen/">Тюмень</a></li>
+                                    {% if page in  ugra_page%}
+                                         <li class="active"><a href="/hmao/">ХМАО</a></li>
+                                    {% elif page in  yamal_page %}
+                                        <li class="active"><a href="/yanao/">ЯНАО</a></li>
+                                    {% endif %}
+                            {% elif page in ugra_page%}
+                                <li class="active"><a href="/hmao/">ХМАО</a></li>
+                                 {% if page in  tyumen_page%}
+                                         <li class="active"><a href="/tyumen/">Тюмень</a></li>
+                                    {% elif page in  yamal_page %}
+                                        <li class="active"><a href="/yanao/">ЯНАО</a></li>
+                                    {% endif %}
+                             {% elif page in yamal_page%}
+                                <li class="active"><a href="/yanao/">ЯНАО</a></li>
+                                {% if page in  tyumen_page%}
+                                         <li class="active"><a href="/tyumen/">Тюмень</a></li>
+                                    {% elif page in  ugra_page %}
+                                        <li class="active"><a href="/hmao/">ХМАО</a></li>
+                                {% endif %}
+                            {% endif %}
                     </ul>
                 </div>
             </div>
@@ -222,77 +228,80 @@
             <div class="row justify-content-center">
                 <div class="col-lg-8">
                     <div class="vs-blog">
-                        <div class="vs-blog-image mb-20">
-                            <img src="../static/assets/img/blog/blog-details-1.jpg" alt="Blog image" class="w-100">
-                        </div>
+                        <div class="col-md-6  text-md-left mb-1 mb-md-0">
+                            <h1 class="breadcumb-title h4 text-medium text-black my-0">{{ page.title|upfirstletter  }}</h1>
+                         </div>
                         <div class="vs-blog-content">
-                            <div class="meta-box d-flex flex-wrap align-items-center">
-                                <div class="blog-meta mr-20 mb-15">
-                                    <a href="archive.html"><i class="fal fa-calendar-alt"></i>Dec 20, 2020</a>
-                                </div>
-                                <div class="blog-category mb-15">
-                                    <a href="post.html">Тема</a>
-                                </div>
-                            </div>
                             {% for block in page.body %}
-                                {% if  block.block_type == 'Heading' %}
-                                     <h2 class="blog-title h3">{{ block.value|upfirstletter }} </h2>
+                                {% if block.block_type == 'main_text' %}
+                                    <p>{{ block.value|capfirst}}</p>
                                 {% elif block.block_type == 'Text' %}
                                     <p>{{ block.value|capfirst}}</p>
                                 {% elif block.block_type == 'quote' %}
                                     <blockquote>{{ block.value|richtext }}</blockquote>
+                                {% elif block.block_type == 'video' %}
+                                     <div class="embed-responsive embed-responsive-16by9 mb-30" >{% embed block.value %}</div>
                                 {% elif block.block_type == 'carousel' %}
                                       <div class="vs-box-style1 py-30 bg-dark my-30">
-                                        <div class="vs-carousel pb-10 vs-arrow-style1 arrow-theme image-slide" data-arrows="true" data-slidetoshow="1" id="slideno1" data-asnavfor="#slideno2">
-
-                                                {% for slide in block.value %}
-                                                    {% if slide.block_type == 'image' %}
-                                                        {% image slide.value fill-710x430 as c1_img  %}
-                                                      <div> <img src="{{c1_img.url}}" alt="Blog Slide" class="w-100"></div>
-                                                    {% elif slide.block_type == 'video' %}
-                                                          <div>{{  slide.value  }}</div>
-                                                    {% endif %}
-                                                {% endfor %}
-                                        </div>
-                                        <div class="vs-carousel pb-10 vs-arrow-style1 arrow-theme image-slide" data-arrows="true" data-slidetoshow="4" id="slideno2" data-asnavfor="#slideno1">
-                                             {% for slide in block.value %}
-                                                    {% if slide.block_type == 'image' %}
-                                                           {% image slide.value fill-134x100 as c2_img  %}
-                                                            <div> <img src="{{c2_img.url}}"  alt="{{ c2_img.alt}}" class="w-100"></div>
-                                                    {% elif slide.block_type == 'video' %}
-                                                          <div>{{  slide.value  }}</div>
-                                                    {% endif %}
-                                                {% endfor %}
-                                        </div>
+                                            <div class="vs-carousel pb-10 vs-arrow-style1 arrow-theme image-slide" data-arrows="true" data-slidetoshow="1" id="slideno1" >
+                                                    {% for slide in block.value %}
+                                                        {% if slide.block_type == 'image' %}
+                                                            {% image slide.value fill-710x430 as c1_img  %}
+                                                          <div> <img src="{{c1_img.url}}" alt="Blog Slide" class="w-100"></div>
+                                                         {% elif slide.block_type == 'youtube' %}
+                                                            <div class="embed-responsive embed-responsive-16by9 " >{% embed slide.value %}</div>
+                                                        {% elif slide.block_type == 'rutube' %}
+                                                              <div><iframe width="710" height="430" src="{{ slide.value}}" frameBorder="0" allow="clipboard-write; autoplay" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe> </div>
+                                                        {% endif %}
+                                                    {% endfor %}
+                                            </div>
+                                            <div class="vs-carousel pb-10 vs-arrow-style1 arrow-theme image-slide" data-arrows="true" data-slidetoshow="4" id="slideno2" >
+                                                 {% for slide in block.value %}
+                                                        {% if slide.block_type == 'image' %}
+                                                               {% image slide.value fill-134x100 as c2_img  %}
+                                                                <div> <img src="{{c2_img.url}}"  alt="{{ c2_img.alt}}" class="w-100"></div>
+                                                             {% elif slide.block_type == 'youtube' %}
+                                                            <div class="embed-responsive embed-responsive-4by3 " >{% embed slide.value %}</div>
+                                                         {% elif slide.block_type == 'rutube' %}
+                                                              <div><iframe width="134" height="134" src="{{ slide.value}}" frameBorder="0" allow="clipboard-write; autoplay" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe> </div>
+                                                        {% endif %}
+                                                    {% endfor %}
+                                            </div>
                                       </div>
                                     {% elif block.block_type == 'image'  %}
                                         <div class="row mt-30">
                                             <div class="col-xl-6 mb-30">
                                                 {% image block.value  fill-370x405 as bl_img %}
-                                                <img src="{{bl_img.url}}" alt="Blog Image" class="w-100">
+                                                <img src="{{bl_img.url}}" alt="{{ bl_img.alt }}">
                                             </div>
                                             <div class="col-xl-6 mt-xl-n2">
+                                                <p>{{ bl_img.alt }}</p>
                                             </div>
-                                         </div>
+                                        </div>
                                     {% elif block.block_type == 'main_image'  %}
-                                        <div class="row mt-30">
-                                            <div class="col-xl-6 mb-30">
-                                                {% image block.value  fill-370x405 as bl_img %}
+
+                                            <div class="mb-30">
+                                                {% image block.value  fill-770x500 as bl_img %}
                                                 <img src="{{bl_img.url}}" alt="Blog Image" class="w-100">
                                             </div>
-                                            <div class="col-xl-6 mt-xl-n2">
-                                            </div>
-                                         </div>
-                                    {% elif block.block_type == 'original_author' %}
-                                            <div class="sign_div">
-                                                {% if author == True%}
-                                                    {{ block.value }}
-                                                {% else %}
-                                                    {{ editor.Author.all|random }}
-                                                {% endif %}
-                                            </div>
+                                    {% elif block.block_type == 'videodwnld'  %}
+                                       <div class="embed-responsive embed-responsive-16by9 mb-30 ">{% video block.value  controls %}</div>
+
                                 {% endif %}
                             {% endfor %}
+                            <div class="sign_div">
+
+                                {% if author_check%}
+                                   <p>{{ page.original_author }}</p>
+                                {% else %}
+                                    {% for x in person %}
+                                        {% if forloop.counter0 < 1 %}
+                                        {{ x.person }}
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endif %}
+
+                            </div>
                             <div class="ads mb-30 mt-35">
                                 <a href="http://google.com" ><img src="../static/assets/img/ads/ads-img-1.jpg" alt="ADS Image"></a>
                             </div>
@@ -319,20 +328,6 @@
                                 <a href="http://google.com" ><img src="../static/assets/img/ads/ads-img-12.jpg" alt="ADS Image" class="w-100"></a>
                             </div>
                         </div>
-                        <div class="sign_div">
-
-{#                         {{ editor.Author.all|random }}#}
-                        </div>
-                        <div class="share-links border-top  clearfix py-20 mt-25">
-                            <div class="row align-items-xl-center">
-                                <div class="col-md-6">
-                                    <div class="tagcloud">
-                                        <a href="post.html">Тема1</a>
-                                        <a href="post.html">Тема2</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -347,61 +342,51 @@
                 <div class="row justify-content-center">
                     <div class="col-sm-6 col-lg-3 col-xl-4">
                         <div class="widget  ">
-                            <h3 class="widget_title">© 2009 - 2023 ИА Мангазея-Новая Югра.</h3>
+                            {% now 'Y' as year %}
+                            <h3 class="widget_title">© 2009 - {{ year }} ИА Мангазея-Новая Югра.</h3>
                             <div class="vs-widget-about">
-                                <p class="widget-about-text mb-10">{{ footer.disclaimer_text }}</p>
-{#                                <p class="widget-about-text mb-10">Отдельные публикации могут содержать информацию, не предназначенную для пользователей до 16 лет.</p>#}
+                               <p class="widget-about-text mb-10">Свидетельство о регистрации регионального СМИ "Информационное агентство МАНГАЗЕЯ - Новая Югра" ИА №ТУ 86-00139 выдано Управлением Роскомнадзора по ХМАО-Югре и ЯНАО</p>
+                                <p class="widget-about-text mb-10">Отдельные публикации могут содержать информацию, не предназначенную для пользователей до 16 лет.</p>
                                 <div class="media align-items-center">
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="col-sm-6 col-lg-4 col-xl-3">
+
                         <div class="widget  ">
                             <h3 class="widget_title">Недавние Новости</h3>
                             <div class="recent-post-style2">
-                                <div class="recent-post media">
-                                    <div class="media-img">
-                                        <img src="../static/assets/img/widget/post-thumb-1.jpg" alt="Recent Post Image">
-                                    </div>
-                                    <div class="media-body">
-                                        <h4 class="recent-post-title h6 mb-0 "><a href="post.html">Arrest in Mexico over Mormon massacre</a></h4>
-                                        <span class="text-xs"><i class="fal fa-calendar-alt "></i>05 Jan, 2021.</span>
-                                    </div>
-                                </div>
-                                <div class="recent-post media">
-                                    <div class="media-img">
-                                        <img src="../static/assets/img/widget/post-thumb-2.jpg" alt="Recent Post Image">
-                                    </div>
-                                    <div class="media-body">
-                                        <h4 class="recent-post-title h6 mb-0"><a href="post.html">Simplify stand-alone outsourcing before</a></h4>
-                                        <span class="text-xs"><i class="fal fa-calendar-alt "></i>23 Dec, 2020.</span>
-                                    </div>
-                                </div>
+                                {% for post in all_news %}
+                                    {% if forloop.counter0 < 2 %}
+                                        <div class="recent-post media">
+                                            <div class="media-body">
+                                                <h4 class="recent-post-title h6 mb-0 "><a href="{{ post.url }}">{{ post.title|upfirstletter }}</a></h4>
+                                                <span class="text-xs"><i class="fal fa-calendar-alt "></i>{{ post.pub_date}}</span>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                               {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-2 col-xl-2">
+                        <div class="widget widget_nav_menu   ">
+                            <h3 class="widget_title">Быстрые ссылки</h3>
+                            <div class="menu-all-pages-container">
+                                <ul class="menu">
+                                    <li><a href="/news/">Последние новости</a></li>
+                                    <li><a href="/hmao/">ХМАО</a></li>
+                                    <li><a href="/yanao/">ЯНАО</a></li>
+                                    <li><a href="/tyumen/">Тюменская область</a></li>
+                                </ul>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-sm-6 col-lg-2 col-xl-2">
-                        <div class="widget widget_nav_menu">
-                            <h3 class="widget_title">Быстрые ссылки</h3>
-
-                                 <div class="menu-all-pages-container">
-                                        <ul class="menu">
-                                            {% for link in footer.menu_items.all %}
-                                            <li><a href="{{ link.link }}">{{ link.title }}</a></li>
-                                            {% endfor %}
-                                            <li><a href="/news/">Последние новости</a></li>
-                                        </ul>
-                                 </div>
-
-
-                        </div>
-                    </div>
                     <div class="col-sm-6 col-lg-3 col-xl-3">
-                        <div class="widget  p-0  ">
-                         {% include "sub.html" %}
-                        </div>
+                       {% include 'sub.html' %}
+
                     </div>
                 </div>
             </div>
@@ -441,7 +426,8 @@
     <script src={% static "js/map.js"%}></script>
     <!-- Main Js File -->
     <script src={% static "js/main.js" %}></script>
-
+    <!-- Current Time -->
+    <script src={% static 'js/current-time.js' %}></script>
 </body>
 
 </html>
