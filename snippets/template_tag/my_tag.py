@@ -1,5 +1,5 @@
 from django import template
-from snippets.models import AuthorChooser, Author, Menu, BreakingNews
+from snippets.models import AuthorChooser, Author, Menu, BreakingNews, Advert
 from profanity.extras import ProfanityFilter
 
 register = template.Library()
@@ -17,6 +17,14 @@ def categories(context):
 @register.simple_tag()
 def get_menu(slug):
     return Menu.objects.get(slug=slug)
+
+
+@register.inclusion_tag('tags/adverts.html',takes_context=True)
+def adverts(context):
+    return {
+        'ads': Advert.objects.all(),
+        'request':context['request']
+    }
 
 
 pf = ProfanityFilter()

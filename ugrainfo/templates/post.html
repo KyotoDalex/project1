@@ -1,4 +1,4 @@
-{% load wagtailembeds_tags wagtailimages_tags static wagtailcore_tags my_tags wagtailvideos_tags %}
+{% load wagtailembeds_tags wagtailimages_tags static wagtailcore_tags my_tag wagtailvideos_tags %}
 
 {% get_author 'main' as  editor   %}
 {% get_menu 'footer' as footer %}
@@ -228,15 +228,17 @@
             <div class="row justify-content-center">
                 <div class="col-lg-8">
                     <div class="vs-blog">
-                        <div class="col-md-6  text-md-left mb-1 mb-md-0">
-                            <h1 class="breadcumb-title h4 text-medium text-black my-0">{{ page.title|upfirstletter  }}</h1>
-                         </div>
+
+                            <h1 class="blog-title h1  text-black my-0">{{ page.title|upfirstletter  }}</h1>
+
                         <div class="vs-blog-content">
                             {% for block in page.body %}
                                 {% if block.block_type == 'main_text' %}
                                     <p>{{ block.value|capfirst}}</p>
                                 {% elif block.block_type == 'Text' %}
                                     <p>{{ block.value|capfirst}}</p>
+                                {% elif block.block_type == 'image_url' %}
+                                          <img src="{{block.value}}" alt="">
                                 {% elif block.block_type == 'quote' %}
                                     <blockquote>{{ block.value|richtext }}</blockquote>
                                 {% elif block.block_type == 'video' %}

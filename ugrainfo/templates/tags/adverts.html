@@ -1,9 +1,9 @@
+{% load wagtailimages_tags %}
 
-
-{% for advert in adverts %}
-    <p>
-        <a href="{{ advert.url }}">
-            {{ advert.text }}
-        </a>
-    </p>
-{% endfor %}
+<div class="ads d-none d-lg-block text-center bg-secondary">
+    {% for advert in ads %}
+            {% image advert.ad_images width-400 height-200  as ads_img %}
+            <a href="{{ advert.url }}" ><img src="{{ ads_img.url }}"  width="{{ ads_img.width }}" height="{{ ads_img.height }}"></a>
+            <a href="{{ advert.url }}"><p>{{ advert.text }}</p></a>
+    {% endfor %}
+ </div>

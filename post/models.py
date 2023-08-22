@@ -30,6 +30,7 @@ class PostListingPage(RoutablePageMixin, Page):
 
 class PostPage(RoutablePageMixin, Page):
     template = 'post.html'
+    title = ''
     parent_page_types = [PostListingPage]
     breaking_validates = models.BooleanField(blank=True,
                                              help_text='Поставтьте данную галочку чтобы данная новость отображалась в разделе срочных',
@@ -40,6 +41,7 @@ class PostPage(RoutablePageMixin, Page):
     original_author= models.TextField(max_length=50,default='',blank=True,verbose_name='Автор')
     pub_date = models.DateTimeField(null=True, blank=False, default=datetime.datetime.now(),verbose_name='Дата публикации')
     orig_author = models.BooleanField(blank=True,verbose_name='Проверка автора',default=False)
+
 
     body = StreamField([
         ('main_text',blocks.RichTextBlock(validators=[validate_is_profane],label='Основной текст',help_text='Данный блок выводиться на главную страницу',max_length=512)),
@@ -54,8 +56,8 @@ class PostPage(RoutablePageMixin, Page):
 
         ], label='Карусель')),
         ('videodwnld', VideoChooserBlock(required=False, label='Загруженное видео'),),
-        ('video',blocks.URLBlock(label='Ссылка на видео'))
-
+        ('video',blocks.URLBlock(label='Ссылка на видео')),
+        ('image_url',blocks.URLBlock(label='Ссылка на изображение')),
     ], use_json_field=True,verbose_name='Тело публикации')
 
     content_panels = Page.content_panels + [
@@ -63,7 +65,6 @@ class PostPage(RoutablePageMixin, Page):
         MultiFieldPanel([
             FieldPanel('breaking_validates')
         ], heading='Breaking News',classname="collapsible collapsed"),
-
         MultiFieldPanel([
             FieldPanel('tyumen'),
             FieldPanel('yamal'),
@@ -74,6 +75,8 @@ class PostPage(RoutablePageMixin, Page):
             FieldPanel('original_author')
         ],heading='Оригинальный автор',help_text='Укажите автора статьи при необходимости,в ином случае автор публикации будет выбран из  заранее оформленного списка авторов',classname="collapsible collapsed"),
         FieldPanel('pub_date'),
+
+
 
     ]
 

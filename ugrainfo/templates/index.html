@@ -1,4 +1,4 @@
-{% load wagtailimages_tags static wagtailcore_tags my_tags  %}
+{% load wagtailimages_tags static wagtailcore_tags my_tag  %}
 {% get_menu 'footer' as footer %}
 
 
@@ -215,59 +215,107 @@
                                         </div>
                                     </div>
                                 {% endif %}
+                             {% if block.block_type == 'image_url' %}
+                                    <div class="vs-blog mb-1 ">
+                                        <a href="{{ post.url }}" class="overlay gradient-black-md"></a>
+                                        <div class="vs-blog-image">
+{#                                            {% image block.value fill-470x554 as url_slide1 %}#}
+                                            <a href="{{ post.url }}"><img src="{{ block.value }}" alt="BlogImage" class="w-100"></a>
+                                            <div class="vs-blog-content overlay-bottom style-dark">
+                                                 <h2 class="blog-title h4 mb-1"><a href="{{ post.url }}">{{ post.title|upfirstletter}}</a></h2>
+                                                <div class="blog-meta text-xs">
+                                                    <a href="{{ post.url }}"><i class="fal fa-calendar-alt"></i>{{ post.pub_date }}</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endif %}
                             {% endfor %}
                          {% endfor %}
                     </div>
                 </div>
-                        <div class="col-lg-8 col-xl-6">
-                            <div class="vs-carousel arrow-rounded arrow-lg arrow-y-align arrow-has-margin" id="slideno2" data-asnavfor="#slideno1, #slideno3" data-slidetoshow="1" data-arrows="false" data-xlarrows="true" data-mlarrows="true" data-lgarrows="true" data-mdarrows="true" data-smarrows="true" data-xsarrows="true">
-                            {% for post in all_news2 %}
-                                 {% for block in post.body %}
-                                    {% if block.block_type == 'main_image' %}
-                                            <div class="vs-blog mb-1">
-                                                <a href="{{ post.url }}" class="overlay-sm gradient-black-md"></a>
-                                                <div class="vs-blog-image">
-                                                    {% image block.value fill-945x554 as slide2 %}
-                                                    <a href="{{ post.url }}"><img src="{{slide2.url}}" alt="Blog Image" class="w-100"></a>
-                                                </div>
-                                                <div class="vs-blog-content overlay-bottom-sm style-dark-sm">
-                                                    <h2 class="blog-title h3 mb-2 w-xl-80"><a href="{{ post.url }}">{{ post.title|upfirstletter}}</a></h2>
-                                                    <div class="blog-meta text-xs">
-                                                        <a href="{{ post.url }}"><i class="fal fa-calendar-alt"></i>{{ post.pub_date}}</a>
-                                                    </div>
-                                                </div>
+                <div class="col-lg-8 col-xl-6">
+                    <div class="vs-carousel arrow-rounded arrow-lg arrow-y-align arrow-has-margin" id="slideno2" data-asnavfor="#slideno1, #slideno3" data-slidetoshow="1" data-arrows="false" data-xlarrows="true" data-mlarrows="true" data-lgarrows="true" data-mdarrows="true" data-smarrows="true" data-xsarrows="true">
+                    {% for post in all_news2 %}
+                         {% for block in post.body %}
+                            {% if block.block_type == 'main_image' %}
+                                    <div class="vs-blog mb-1">
+                                        <a href="{{ post.url }}" class="overlay-sm gradient-black-md"></a>
+                                        <div class="vs-blog-image">
+                                            {% image block.value fill-945x554 as slide2 %}
+                                            <a href="{{ post.url }}"><img src="{{slide2.url}}" alt="Blog Image" class="w-100"></a>
+                                        </div>
+                                        <div class="vs-blog-content overlay-bottom-sm style-dark-sm">
+                                            <h2 class="blog-title h3 mb-2 w-xl-80"><a href="{{ post.url }}">{{ post.title|upfirstletter}}</a></h2>
+                                            <div class="blog-meta text-xs">
+                                                <a href="{{ post.url }}"><i class="fal fa-calendar-alt"></i>{{ post.pub_date}}</a>
                                             </div>
-                                    {% endif %}
-                                {% endfor %}
-                            {% endfor %}
-                            </div>
-                        </div>
-                            <div class="col-xl-3 d-none d-xl-block">
-                                <div class="vs-carousel" data-slidetoshow="1" id="slideno3" data-asnavfor="#slideno2, #slideno1">
-                                  {% for post in all_news3 %}
-                                    {% for block in post.body %}
-                                        {% if block.block_type == 'main_image' %}
-                                                <div class="vs-blog mb-1">
-                                                    <a href="{{ post.url }}" class="overlay gradient-black-md"></a>
-                                                    <div class="vs-blog-image">
-                                                        {% image block.value fill-470x554 as slide3 %}
-                                                        <a href="{{ post.url }}"><img src="{{ slide3.url }}" alt="BlogImage" class="w-100"></a>
-                                                    </div>
-                                                    <div class="vs-blog-content overlay-bottom style-dark">
-                                                        <h2 class="blog-title h4 mb-1"><a href="{{ post.url }}">{{ post.title|upfirstletter}}</a></h2>
-                                                        <div class="blog-meta text-xs">
-                                                            <a href="{{ post.url }}"><i class="fal fa-calendar-alt"></i>{{ post.pub_date}}</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                        {% endif %}
-                                    {% endfor %}
-                                  {% endfor %}
-                            </div>
+                                        </div>
+                                    </div>
+                            {% endif %}
+                             {% if block.block_type == 'image_url' %}
+                                    <div class="vs-blog mb-1">
+                                        <a href="{{ post.url }}" class="overlay-sm gradient-black-md"></a>
+                                        <div class="vs-blog-image">
+{#                                            {% image block.value fill-945x554 as url_slide2 %}#}
+                                            <a href="{{ post.url }}"><img src="{{block.value}}" width="945" height="554" alt="Blog Image" class="w-100"></a>
+                                        </div>
+                                        <div class="vs-blog-content overlay-bottom-sm style-dark-sm">
+                                            <h2 class="blog-title h3 mb-2 w-xl-80"><a href="{{ post.url }}">{{ post.title|upfirstletter}}</a></h2>
+                                            <div class="blog-meta text-xs">
+                                                <a href="{{ post.url }}"><i class="fal fa-calendar-alt"></i>{{ post.pub_date}}</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+                    </div>
                 </div>
+                <div class="col-xl-3 d-none d-xl-block">
+                    <div class="vs-carousel" data-slidetoshow="1" id="slideno3" data-asnavfor="#slideno2, #slideno1">
+                      {% for post in all_news3 %}
+                        {% for block in post.body %}
+                            {% if block.block_type == 'main_image' %}
+                                    <div class="vs-blog mb-1">
+                                        <a href="{{ post.url }}" class="overlay gradient-black-md"></a>
+                                        <div class="vs-blog-image">
+{#                                            {% image block.value fill-470x554 as slide3 %}#}
+                                            <a href="{{ post.url }}"><img src="{{ block.value }}" alt="BlogImage" class="w-100"></a>
+                                        </div>
+                                        <div class="vs-blog-content overlay-bottom style-dark">
+                                            <h2 class="blog-title h4 mb-1"><a href="{{ post.url }}">{{ post.title|upfirstletter}}</a></h2>
+                                            <div class="blog-meta text-xs">
+                                                <a href="{{ post.url }}"><i class="fal fa-calendar-alt"></i>{{ post.pub_date}}</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                            {% endif %}
+                            {% if block.block_type == 'image_url' %}
+                                    <div class="vs-blog mb-1">
+                                        <a href="{{ post.url }}" class="overlay gradient-black-md"></a>
+                                        <div class="vs-blog-image">
+{#                                            {% image block.value fill-470x554 as url_slide3 %}#}
+                                            <a href="{{ post.url }}"><img src="{{ block.value }}" alt="BlogImage" height="554" width="470"></a>
+                                        </div>
+                                        <div class="vs-blog-content overlay-bottom style-dark">
+                                            <h2 class="blog-title h4 mb-1"><a href="{{ post.url }}">{{ post.title|upfirstletter}}</a></h2>
+                                            <div class="blog-meta text-xs">
+                                                <a href="{{ post.url }}"><i class="fal fa-calendar-alt"></i>{{ post.pub_date}}</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                            {% endif %}
+                        {% endfor %}
+                      {% endfor %}
+                    </div>
+                </div>
+
             </div>
         </div>
+
     </section>
+    {% adverts %}
     <!--==============================
       Featured News
     ==============================-->
@@ -348,9 +396,7 @@
             </div>
         </div>
     </section>
-    <div class="container text-center">
-        <img src="{% static '/assets/img/ads/ads-img-2.jpg ' %}" alt="Ads Banner">
-    </div>
+
     <!--==============================
     Latest News
     ==============================-->
@@ -616,9 +662,6 @@
                         </div>
                 </div>
                 <div class="col-lg-4">
-                    <div class="ads mb-30">
-                        <img src="{% static 'assets/img/ads/ads-img-6.jpg' %}" alt="Ads Image" class="w-100">
-                    </div>
                     <div class="widget p-0  ">
                         <div class="widget-category-style1 has-border-middle">
                             <div class="vs-cat-box background-image" data-bg-src="/static/assets/img/ugra.jpg" data-overlay="title" data-opacity="5">

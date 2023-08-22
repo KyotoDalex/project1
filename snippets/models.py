@@ -23,14 +23,20 @@ class StoryManager(models.Manager):
 @register_snippet
 class Advert(models.Model):
     url = models.URLField(null=True, blank=True)
-    text = RichTextField(max_length=255, help_text='Введите текст рекламы')
-    image = models.ImageField(null=True, blank=True)
+    text = models.TextField(max_length=255, help_text='Введите текст рекламы')
+    ad_images = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='Изображение'
+    )
     publish_date = models.DateTimeField(default=datetime.datetime.now,editable=True)
     expiration_time = models.DateTimeField(db_index=True, default=datetime.datetime.now, editable=True)
     panels = [
         FieldPanel('url'),
         FieldPanel('text'),
-        FieldPanel('image'),
+        FieldPanel('ad_images'),
         FieldPanel('expiration_time'),
         FieldPanel('publish_date')
     ]

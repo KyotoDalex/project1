@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     "wagtail.admin",
     "wagtail",
     "wagtailvideos",
-    "wagtailcaptcha",
+
     "wagtail.contrib.routable_page",
 
     "modelcluster",
@@ -110,7 +110,7 @@ TEMPLATES = [
                 "django.contrib.messages.context_processors.messages",
             ],
             "libraries": {
-                'my_tags': 'snippets.template_tag.my_tags'
+                'my_tag': 'snippets.template_tag.my_tag'
             }
         },
     },
@@ -131,8 +131,12 @@ WAGTAILEMBEDS_FINDERS = [
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": 'manga_db',
+        "USER": 'postgres',
+        "PASSWORD": '123123',
+        "HOST": 'localhost',
+        "PORT": '5432'
     }
 }
 
