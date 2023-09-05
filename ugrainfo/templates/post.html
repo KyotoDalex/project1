@@ -237,8 +237,9 @@
                                     <p>{{ block.value|capfirst}}</p>
                                 {% elif block.block_type == 'Text' %}
                                     <p>{{ block.value|capfirst}}</p>
-                                {% elif block.block_type == 'image_url' %}
-                                          <img src="{{block.value}}" alt="">
+                                {% elif block.block_type == 'img_url' %}
+                                    {% image block.value.image fill-370x405 as url_img %}
+                                        <img src="{{ url_img.url }}" alt="blog">
                                 {% elif block.block_type == 'quote' %}
                                     <blockquote>{{ block.value|richtext }}</blockquote>
                                 {% elif block.block_type == 'video' %}

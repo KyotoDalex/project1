@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     "wagtail.admin",
     "wagtail",
     "wagtailvideos",
+    'wagtail.api.v2',
 
     "wagtail.contrib.routable_page",
 

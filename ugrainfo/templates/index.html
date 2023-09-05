@@ -215,12 +215,12 @@
                                         </div>
                                     </div>
                                 {% endif %}
-                             {% if block.block_type == 'image_url' %}
+                             {% if block.block_type == 'img_url' %}
                                     <div class="vs-blog mb-1 ">
                                         <a href="{{ post.url }}" class="overlay gradient-black-md"></a>
                                         <div class="vs-blog-image">
-{#                                            {% image block.value fill-470x554 as url_slide1 %}#}
-                                            <a href="{{ post.url }}"><img src="{{ block.value }}" alt="BlogImage" class="w-100"></a>
+                                            {% image block.value.image fill-470x554 as url_slide1 %}
+                                            <a href="{{ post.url }}"><img src="{{ url_slide1.url }}" alt="BlogImage"></a>
                                             <div class="vs-blog-content overlay-bottom style-dark">
                                                  <h2 class="blog-title h4 mb-1"><a href="{{ post.url }}">{{ post.title|upfirstletter}}</a></h2>
                                                 <div class="blog-meta text-xs">
@@ -253,12 +253,12 @@
                                         </div>
                                     </div>
                             {% endif %}
-                             {% if block.block_type == 'image_url' %}
+                             {% if block.block_type == 'img_url' %}
                                     <div class="vs-blog mb-1">
                                         <a href="{{ post.url }}" class="overlay-sm gradient-black-md"></a>
                                         <div class="vs-blog-image">
-{#                                            {% image block.value fill-945x554 as url_slide2 %}#}
-                                            <a href="{{ post.url }}"><img src="{{block.value}}" width="945" height="554" alt="Blog Image" class="w-100"></a>
+                                            {% image block.value.image fill-945x554 as url_slide2 %}
+                                            <a href="{{ post.url }}"><img src="{{url_slide2.url}}"alt="Blog Image" ></a>
                                         </div>
                                         <div class="vs-blog-content overlay-bottom-sm style-dark-sm">
                                             <h2 class="blog-title h3 mb-2 w-xl-80"><a href="{{ post.url }}">{{ post.title|upfirstletter}}</a></h2>
@@ -280,8 +280,8 @@
                                     <div class="vs-blog mb-1">
                                         <a href="{{ post.url }}" class="overlay gradient-black-md"></a>
                                         <div class="vs-blog-image">
-{#                                            {% image block.value fill-470x554 as slide3 %}#}
-                                            <a href="{{ post.url }}"><img src="{{ block.value }}" alt="BlogImage" class="w-100"></a>
+                                            {% image block.value fill-470x554 as slide3 %}
+                                            <a href="{{ post.url }}"><img src="{{ slide3.url }}" alt="BlogImage" class="w-100"></a>
                                         </div>
                                         <div class="vs-blog-content overlay-bottom style-dark">
                                             <h2 class="blog-title h4 mb-1"><a href="{{ post.url }}">{{ post.title|upfirstletter}}</a></h2>
@@ -291,12 +291,12 @@
                                         </div>
                                     </div>
                             {% endif %}
-                            {% if block.block_type == 'image_url' %}
+                            {% if block.block_type == 'img_url' %}
                                     <div class="vs-blog mb-1">
                                         <a href="{{ post.url }}" class="overlay gradient-black-md"></a>
                                         <div class="vs-blog-image">
-{#                                            {% image block.value fill-470x554 as url_slide3 %}#}
-                                            <a href="{{ post.url }}"><img src="{{ block.value }}" alt="BlogImage" height="554" width="470"></a>
+                                            {% image block.value.image fill-470x554 as url_slide3 %}
+                                            <a href="{{ post.url }}"><img src="{{ url_slide3.url }}" alt="BlogImage" height="554" width="470"></a>
                                         </div>
                                         <div class="vs-blog-content overlay-bottom style-dark">
                                             <h2 class="blog-title h4 mb-1"><a href="{{ post.url }}">{{ post.title|upfirstletter}}</a></h2>

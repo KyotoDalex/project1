@@ -12,7 +12,7 @@ from newsletter.views import  validate_email, SubView
 from search import views as search_views
 from post import feed,views
 from .views import sass_page_handler, login,yanao,hmao,tyumen
-
+from .api import api_router
 
 urlpatterns = [
     path("django-admin/", admin.site.urls),
@@ -28,7 +28,8 @@ urlpatterns = [
     path('news/', views.last_news),
     path('yanao/',yanao),
     path('hmao/',hmao),
-    path('tyumen/',tyumen)
+    path('tyumen/',tyumen),
+    path('api/v2/', api_router.urls),
 
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
@@ -50,4 +51,5 @@ urlpatterns = urlpatterns + [
     # Alternatively, if you want Wagtail pages to be served from a subpath
     # of your site, rather than the site root:
     #    path("pages/", include(wagtail_urls)),
+    re_path(r'^', include(wagtail_urls))
 ]

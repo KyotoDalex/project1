@@ -1,4 +1,10 @@
+import hashlib
+import os.path
+import urllib
+
+import requests
 import wagtail.images
+from django.core.files.base import ContentFile
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.db import models
 from django import forms
@@ -16,11 +22,94 @@ from wagtail.images.blocks import ImageChooserBlock
 from wagtail.models import Page, Orderable
 from wagtailvideos.blocks import VideoChooserBlock
 from django.urls import reverse
-
+from wagtail.images.models import Image
 from profanity.validators import validate_is_profane
 from snippets.models import BreakingNews
 import datetime
 
+# class CustomImageBlock(blocks.StructBlock):
+#     image_url = blocks.URLBlock(
+#         label='Ссылка на изображение',
+#         help_text='Введите ссылку на изображение'
+#     )
+#
+#
+#     class Meta:
+#         icon = 'image'
+#
+#
+#     def get_image_hash(self, image_data):
+#         return hashlib.md5(image_data).hexdigest()
+#
+#     def clean(self, value):
+#         cleaned_data = super().clean(value)
+#         image_url = cleaned_data.get('image_url')
+#
+#         if image_url:
+#             try:
+#                 response = requests.get(image_url)
+#                 if response.status_code == 200:
+#                     image_data = response.content
+#                     image_hash = self.get_image_hash(image_data)
+#
+#                     existing_images = Image.objects.filter(custom_hash=image_hash)
+#                     if existing_images.exists():
+#                         return {'image_url': image_url, 'image': existing_images.first()}
+#                     else:
+#                         image = Image(title='Custom Image')
+#                         image.file.save('custom_image.jpg', ContentFile(image_data), save=True)
+#                         image.custom_hash = image_hash
+#                         image.save()
+#                         return {'image_url': image_url, 'image': image}
+#                 else:
+#                     # Обработка ошибок при загрузке изображения
+#                     pass
+#             except Exception as e:
+#                 # Обработка ошибок
+#                 pass
+#
+#         return cleaned_data
+
+class CustomImageBlock(blocks.StructBlock):
+    image_url = blocks.URLBlock(
+        label='Ссылка на изображение',
+        help_text='Введите ссылку на изображение'
+    )
+
+    class Meta:
+        icon = 'image'
+
+    def get_image_hash(self, image_data):
+        return hashlib.md5(image_data).hexdigest()
+
+    def clean(self, value):
+        cleaned_data = super().clean(value)
+        image_url = cleaned_data.get('image_url')
+
+        if image_url:
+            try:
+                response = requests.get(image_url)
+                if response.status_code == 200:
+                    image_data = response.content
+                    image_hash = self.get_image_hash(image_data)
+
+                    existing_images = Image.objects.filter(custom_hash=image_hash)
+                    if existing_images.exists():
+                        return {'image_url': image_url, 'image': existing_images.first()}
+                    else:
+                        image = Image(title='Custom Image')
+                        image.file.save('custom_image.jpg', ContentFile(image_data), save=True)
+                        image.custom_hash = image_hash
+                        image.save()
+                        return {'image_url': image_url, 'image': image}
+                else:
+                    # Обработка ошибок при загрузке изображения
+                    pass
+            except Exception as e:
+                # Обработка ошибок
+                pass
+
+        return cleaned_data
 class PostListingPage(RoutablePageMixin, Page):
     template = 'postpages/postpagelisting.html'
 
@@ -35,9 +124,9 @@ class PostPage(RoutablePageMixin, Page):
     breaking_validates = models.BooleanField(blank=True,
                                              help_text='Поставтьте данную галочку чтобы данная новость отображалась в разделе срочных',
                                              verbose_name='Срочная новость',default=True)
-    tyumen = models.BooleanField(blank=False, help_text='Поставтьте данную галочку чтобы данная новость отображалась в разделе Тюмень', verbose_name='Новость в Тюмени',)
-    yamal = models.BooleanField(blank=False, help_text='Поставтьте данную галочку чтобы данная новость отображалась в разделе ЯНАО', verbose_name='Новость в ЯНАО',)
-    ugra = models.BooleanField(blank=False,help_text='Поставтьте данную галочку чтобы данная новость отображалась в разделе ХМАО',  verbose_name='Новость в ХМАО',)
+    tyumen = models.BooleanField(blank=False, help_text='Поставтьте данную галочку чтобы данная новость отображалась в разделе Тюмень', verbose_name='Новость в Тюмени',default=True)
+    yamal = models.BooleanField(blank=False, help_text='Поставтьте данную галочку чтобы данная новость отображалась в разделе ЯНАО', verbose_name='Новость в ЯНАО',default=True)
+    ugra = models.BooleanField(blank=False,help_text='Поставтьте данную галочку чтобы данная новость отображалась в разделе ХМАО',  verbose_name='Новость в ХМАО',default=True)
     original_author= models.TextField(max_length=50,default='',blank=True,verbose_name='Автор')
     pub_date = models.DateTimeField(null=True, blank=False, default=datetime.datetime.now(),verbose_name='Дата публикации')
     orig_author = models.BooleanField(blank=True,verbose_name='Проверка автора',default=False)
@@ -57,7 +146,7 @@ class PostPage(RoutablePageMixin, Page):
         ], label='Карусель')),
         ('videodwnld', VideoChooserBlock(required=False, label='Загруженное видео'),),
         ('video',blocks.URLBlock(label='Ссылка на видео')),
-        ('image_url',blocks.URLBlock(label='Ссылка на изображение')),
+        ('img_url',CustomImageBlock()),
     ], use_json_field=True,verbose_name='Тело публикации')
 
     content_panels = Page.content_panels + [
